@@ -1,0 +1,54 @@
+.profile {
+  display: flex;
+  max-width: 1280px;
+  height: 210px;
+  margin: 0 auto;
+  padding: 34px 0 20px;
+  border-bottom: 1px rgba(33, 33, 33 0.4) solid;
+}
+
+.profile__avitar {
+  margin-right: 20px;
+  width: 190px;
+  height: 190px;
+}
+
+.profile__column {
+  display: flex;
+  flex-direction: column;
+  width: 505px;
+  height: 190px;
+}
+
+.profile__name {
+  margin: 0 0 12px;
+  width: 420px;
+  height: 32px;
+  color: #212121;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 32px;
+}
+
+.profile__description {
+  margin: 0;
+  width: 97px;
+  height: 16px;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.profile__edit-button {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 8px
+}
+
+.profile__add-post-button {
+  margin: auto;
+  padding: none;
+  border: none
+}
