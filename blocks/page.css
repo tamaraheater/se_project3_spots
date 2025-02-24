@@ -1,9 +1,10 @@
 .page {
+  margin: 0;
   background-color: #fcf5e5;
   min-height: 100vh;
 }
 
-.page__section {
-  max-width: 1440px;
+.profile__page-section {
+  max-width: 1280px;
   margin: 0 auto;
 }
