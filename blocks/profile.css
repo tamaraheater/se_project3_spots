@@ -1,6 +1,7 @@
 .profile {
   display: flex;
   max-width: 1280px;
+  height: 210px;
   padding: 34px 0 20px;
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
@@ -40,15 +41,16 @@
 
 .profile__edit-button {
   margin-top: auto;
+  width: 107.34px;
+  height: 16px;
+  opacity: 70%;
   display: flex;
-  flex-direction: row;
-  gap: 8px;
-  opacity: 70%
+  justify-content: center;
 }
 
 .profile__add-post-button {
   margin-left: auto;
-  padding: none;
+  width: 149px;
+  height: 52px;
   border: none;
-
 }
