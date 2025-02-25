@@ -1,0 +1,34 @@
+.card {
+  width: 413px;
+}
+
+.card__image{
+  width: 413px;
+  height: 413px;
+  object-fit: cover;
+  display: block;
+}
+
+.card__content {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.card__title {
+  margin: 0%;
+  padding: 12px;
+  Width: 162px;
+  height: 24px;
+  font-family: "Poppins";
+  font-size: 20px;
+  line-height: 0.8;
+}
+
+.card__like-button {
+  background-image:url(../images/heart-like-icon.svg);
+  width: 23px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+}
