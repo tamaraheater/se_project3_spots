@@ -36,22 +36,15 @@
   font-family: "Poppins";
   font-weight: 500;
   font-size: 16px;
-  line-height: 16px;
+  line-height: 1;
 }
 
 .profile__edit-button {
   margin-top: auto;
-  width: 107.34px;
-  height: 18px;
-  opacity: 70%;
-  border: none
+  border: none;
 }
 
 .profile__add-post-button {
   margin-top: auto;
-  margin-left: 400px;
-  align-items: end;
-  width: 149px;
-  height: 52px;
   border: none;
 }
