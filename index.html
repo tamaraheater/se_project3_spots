@@ -17,7 +17,7 @@
     <div class="page">
       <header class="header">
         <img
-          src="./images/logo.jpg"
+          src="./images/logo.svg"
           alt="SPOTS Social Network Logo"
           class="header__logo"
         />
@@ -32,13 +32,22 @@
         <div class="profile__column">
           <h1 class="profile__name">Bessie Coleman</h1>
           <p class="profile__description">Civil Aviator</p>
-          <button class="profile__edit-button">
-            <img src="./images/profile-edit-button.svg" alt=/>
-          </button>
+          <button type="button" class=profile__edit-button">
+            <img src="./images/pencil.svg" alt="Edit Profile" />Edit Profile</button>
         </div>
-        <button class="profile__add-post-button">
-          <img src="./images/button-large.svg" alt="Add Post button" />
-        </button>
+        <button type="button" class="profile__add-post-button">
+          <img src="./images/plus.svg" alt="Add A Post" />New Post</button>
+      </section>
+      <section class="cards">
+        <ul class="cards__list">
+          <li class="card">
+            <img src="./images/1-photo-by-moritz-feldmann-from-pexels.jpg" alt="Image by Moritz Feldman" class="card__image"/>
+            <div class="card__content">
+              <h2 class="card__title">Val Thorens</h2>
+              <button type="button" class="card__like-button"></button>
+            </div>
+          </li>
+        </ul>
       </section>
       <footer class="footer"></footer>
     </div>
