@@ -1,8 +1,9 @@
 .header {
   margin: 0;
-  max-width: 100%;
+  max-width: 1440%;
   height: 46px;
   background-color: #fff;
+  background-position: center;
   display: flex;
   justify-content: center;
   border-bottom: 1px;
@@ -13,4 +14,3 @@
   height: 26px;
   padding: 10px 0;
 }
-

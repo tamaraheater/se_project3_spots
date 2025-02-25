@@ -1,6 +1,9 @@
 .page {
   margin: 0;
+  width: 1440px;
+  height: 1418 px;
   background-color: #fcf5e5;
+  background-position: center;
   min-height: 100vh;
 }
 
