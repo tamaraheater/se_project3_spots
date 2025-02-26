@@ -1,9 +1,7 @@
 .profile {
-  margin: 0;
   display: flex;
-  max-width: 1280px;
-  height: 210px;
-  padding: 20px 20px 0px 20px;
+  align-items: flex-end;
+  padding: 34px 20px;
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
@@ -28,17 +26,19 @@
   width: 420px;
   height: 32px;
   color: #212121;
-  font-family: "Poppins Medium";
+  font-family: "Poppins-Medium", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 32px;
-  line-height: 1.0;
+  line-height: 1;
 }
 
 .profile__description {
   margin: 0;
   width: 97px;
   height: 16px;
-  font-family: "Poppins";
+  color: #212121;
+  opacity: 70%;
+  font-family: "Poppins-Medium", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
@@ -46,8 +46,29 @@
 
 .profile__edit-button {
   margin-top: auto;
+  width: 115px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  border: none;
+  color: #212121;
+  opacity: 70%;
+  font-family: "Poppins-Medium", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  background-color: transparent;
 }
 
 .profile__add-post-button {
-  margin-top: auto;
+  width: 149px;
+  height: 52px;
+  background-color: #212121;
+  color: #fcf5e5;
+  font-family: "Poppins-Medium", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  border: none;
+  border-radius: 8px;
+  margin-left: auto;
 }

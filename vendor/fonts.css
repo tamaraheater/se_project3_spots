@@ -1,19 +1,19 @@
 @font-face {
-  font-family: "Poppins";
+  font-family: "Poppins-Regular";
   font-style: normal;
   font-weight: 400;
   src: url("./fonts/Poppins-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Poppins";
+  font-family: "Poppins-Medium";
   font-style: normal;
   font-weight: 500;
   src: url("./fonts/Poppins-Medium.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Poppins";
+  font-family: "Poppins-Thin";
   font-style: normal;
   font-weight: 400;
   src: url("./fonts/Poppins-Thin.ttf") format("truetype");
