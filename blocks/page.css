@@ -1,13 +1,12 @@
 .page {
   margin: 0;
-  width: 1440px;
-  height: 1418px;
+  max-width: 1440px;
   background-color: #fcf5e5;
   background-position: center;
   min-height: 100vh;
 }
 
-.profile__page-section {
+.page__section {
   max-width: 1280px;
   margin: 0 auto;
 }
