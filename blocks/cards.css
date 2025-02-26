@@ -1,6 +1,6 @@
 .cards {
   margin: 0;
-  padding-left: 80px;
+  padding-left: 20px;
   padding-top: 20px;
 }
 
@@ -10,6 +10,5 @@
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, 413px);
-  position: center;
   gap: 20px;
 }

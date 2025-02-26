@@ -3,7 +3,7 @@
   max-width: 100%;
   height: 46px;
   background-color: #fff;
-  background-position: center;
+  background-size: cover;
   display: flex;
   justify-content: center;
   border-bottom: 1px;
