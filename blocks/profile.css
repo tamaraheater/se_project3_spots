@@ -1,5 +1,5 @@
 .profile {
-  padding: 20px 0px;
+  padding: 20px;
   display: flex;
   align-items: flex-end;
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
@@ -18,7 +18,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 190px;
-  }
+}
 
 .profile__name {
   margin: 0 0 12px;
@@ -29,7 +29,7 @@
   font-weight: 500;
   font-size: 32px;
   line-height: 1;
-  }
+}
 
 .profile__description {
   margin: 0;
@@ -45,15 +45,17 @@
 
 .profile__edit-button {
   margin-top: auto;
-  width: 105px;
+  width: fit-content;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   border: none;
   color: #212121;
   opacity: 70%;
   font-family: "Poppins-Medium", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
+  padding: 0;
+  gap: 8px;
   background-color: transparent;
 }
 
@@ -64,10 +66,11 @@
 }
 
 .profile__add-post-button {
-  margin-left: 500px;
+  margin-left: auto;
   width: 149px;
   height: 52px;
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 8px;
   background-color: #212121;
@@ -75,9 +78,10 @@
   font-family: "Poppins-Medium", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
-  line-height: 1.0;
+  line-height: 1;
   border: none;
   border-radius: 8px;
+  padding: 0;
 }
 
 .profile__add-post-button-icon {
