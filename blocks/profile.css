@@ -1,7 +1,8 @@
 .profile {
-  padding: 34px 20px 0px;
+  padding: 34px 0 20px;
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
@@ -67,6 +68,7 @@
 
 .profile__add-post-button {
   margin-left: auto;
+  margin-right: 18px;
   width: 149px;
   height: 52px;
   display: flex;
@@ -81,10 +83,52 @@
   line-height: 1;
   border: none;
   border-radius: 8px;
-  padding: 0;
+  padding: 20px;
 }
 
 .profile__add-post-button-icon {
   width: 12px;
   height: 12px;
+}
+
+@media screen and (max-width: 627px) {
+  .profile {
+    max-width: 288px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
+    margin: auto;
+  }
+
+  .profile__avitar {
+    margin: 0 0 12px;
+    width: 80px;
+    height: 80px;
+    margin: 0 0 12px;
+  }
+
+  .profile__name {
+    height: 20px;
+    font-size: 20px;
+    margin: 0 0 6px;
+  }
+
+  .profile__description {
+    width: 288px;
+    height: 16px;
+    font-size: 16px;
+    font-weight: 1;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .profile__edit-button {
+    margin: 32px auto;
+  }
+
+  .profile__add-post-button {
+    margin: 0 auto;
+  }
 }

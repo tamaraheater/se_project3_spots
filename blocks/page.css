@@ -1,5 +1,6 @@
 .page {
   margin: 0;
+  align-items: center;
   background-color: #fcf5e5;
   background-position: center;
   background-size: cover;
@@ -8,8 +9,8 @@
 }
 
 .page__section {
-  margin: 0;
+  margin: 0 auto;
   max-width: 1280px;
-  align-items: center;
-  padding-left: 20px;
-}
+  width: 100%;
+  box-sizing:  border-box;
+  }
