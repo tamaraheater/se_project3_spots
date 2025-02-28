@@ -5,7 +5,7 @@
 .card__image {
   margin: 0;
   width: 413px;
-  height: 413px;
+  height: 445px;
   object-fit: cover;
   display: block;
   border-radius: 8px;
@@ -44,8 +44,8 @@
 
 @media screen and (max-width: 627px) {
   .card__image {
-    width: 288px;
-    height: 288px;
+    max-width: 288px;
+    max-height: 288px;
   }
 
   .card__title {

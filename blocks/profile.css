@@ -1,9 +1,9 @@
 .profile {
-  padding: 34px 0 20px;
   display: flex;
-  align-items: flex-end;
+  align-items: end;
   justify-content: space-between;
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
+  padding: 34px 0 20px;
 }
 
 .profile__avitar {
@@ -17,7 +17,9 @@
 .profile__column {
   display: flex;
   flex-direction: column;
+  justify-content: end;
   height: 190px;
+  max-width: 420px;
 }
 
 .profile__name {
@@ -48,11 +50,11 @@
   font-size: 16px;
   line-height: 1;
   text-overflow: ellipsis;
-  overflow:hidden;
+  overflow: hidden;
   line-clamp: 3;
   display: -webkit-box;
-   -webkit-line-clamp: 3;
-   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   max-width: 420px;
 }
 
@@ -126,7 +128,6 @@
     font-size: 20px;
     margin: 0 auto 6px;
     max-width: 288px;
-
   }
 
   .profile__description {
@@ -137,7 +138,7 @@
     align-items: center;
     margin: 0 auto 20px;
     max-width: 288px;
-      }
+  }
 
   .profile__edit-button {
     margin: 16px auto;
