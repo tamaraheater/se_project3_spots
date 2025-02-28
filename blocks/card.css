@@ -53,13 +53,6 @@
     max-width: 254px;
     height: 20px;
     padding: 8px 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    line-clamp: 1;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
   }
 
   .card__like-button {

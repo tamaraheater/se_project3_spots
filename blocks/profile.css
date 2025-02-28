@@ -51,8 +51,8 @@
   overflow:hidden;
   line-clamp: 3;
   display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;
   max-width: 420px;
 }
 
@@ -126,12 +126,7 @@
     font-size: 20px;
     margin: 0 auto 6px;
     max-width: 288px;
-    text-overflow: ellipsis;
-    overflow:hidden;
-    line-clamp: 3;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+
   }
 
   .profile__description {
@@ -142,13 +137,7 @@
     align-items: center;
     margin: 0 auto 20px;
     max-width: 288px;
-    text-overflow: ellipsis;
-    overflow:hidden;
-    line-clamp: 3;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
+      }
 
   .profile__edit-button {
     margin: 16px auto;
