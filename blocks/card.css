@@ -1,6 +1,6 @@
 .card {
   margin: 0;
-  }
+}
 
 .card__image {
   margin: 0;
@@ -23,8 +23,15 @@
   height: 24px;
   font-family: "Poppins-Regular";
   font-size: 20px;
-  line-height: 0.8;
-  }
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  max-width: 413px;
+}
 
 .card__like-button {
   background-image: url(../images/heart-like-icon.svg);
@@ -42,14 +49,21 @@
 
   .card__title {
     font-size: 16px;
-    width: fit-content;
+    max-width: 264px;
     height: 20px;
-    padding: 10px 0;
+    padding: 8px 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
 
   .card__like-button {
-    width: 20px;
+    max-width: 20px;
     height: 18px;
-    padding: 0
+    padding: 0;
+    margin: 0;
   }
 }
