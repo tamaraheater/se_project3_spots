@@ -49,6 +49,7 @@
   line-height: 1;
   text-overflow: ellipsis;
   overflow:hidden;
+  line-clamp: 3;
   display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -125,6 +126,12 @@
     font-size: 20px;
     margin: 0 auto 6px;
     max-width: 288px;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    line-clamp: 3;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   .profile__description {
@@ -135,6 +142,12 @@
     align-items: center;
     margin: 0 auto 20px;
     max-width: 288px;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    line-clamp: 3;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   .profile__edit-button {
