@@ -120,18 +120,17 @@
     width: 88px;
     height: 88px;
     align-items: center;
-    margin: auto 0 12px;
+    margin: auto, 12;
   }
 
   .profile__name {
+    max-width: 288px;
     height: 20px;
     font-size: 20px;
     margin: 0 auto 6px;
-    max-width: 288px;
   }
 
   .profile__description {
-    width: 288px;
     height: 16px;
     font-size: 16px;
     font-weight: 1;
