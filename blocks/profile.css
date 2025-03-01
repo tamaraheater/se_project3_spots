@@ -122,25 +122,23 @@
     align-items: center;
     text-align: center;
     padding-top: 20px;
-    margin: 0 auto;
+    margin: auto;
   }
 
   .profile__avitar {
-    width: 88px;
-    height: 88px;
+    max-width: 96px;
+    max-height: 96px;
     align-items: center;
-    margin: auto, 12;
+    margin: 12px;
   }
 
   .profile__name {
     max-width: 288px;
-    height: 20px;
     font-size: 20px;
-    margin: 0 auto 6px;
+    margin: 6px;
   }
 
   .profile__description {
-    height: 16px;
     font-size: 16px;
     font-weight: 1;
     align-items: center;
