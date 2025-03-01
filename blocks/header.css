@@ -7,11 +7,12 @@
   background-size: cover;
   display: flex;
   justify-content: center;
+  align-items: center;
   border-bottom: 1px;
+  padding: 10px;
   }
 
 .header__logo {
   width: 94px;
   height: 26px;
-  padding: 10px 0;
-}
+  }

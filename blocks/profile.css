@@ -72,12 +72,18 @@
   padding: 0;
   gap: 8px;
   background-color: transparent;
+  transition: opacity 0.3s;
+  cursor: pointer;
 }
 
 .profile__edit-button-icon {
   width: 18px;
   height: 16px;
   border: none;
+}
+
+.profile__edit-button:hover {
+  opacity: 1;
 }
 
 .profile__add-post-button {
@@ -97,11 +103,17 @@
   border: none;
   border-radius: 8px;
   padding: 20px;
+  transition: opacity 0.3s;
+  cursor: pointer;
 }
 
 .profile__add-post-button-icon {
   width: 12px;
   height: 12px;
+}
+
+.profile__add-post-button:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 627px) {
