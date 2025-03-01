@@ -16,5 +16,4 @@ This project is made so all the elements are displayed correctly on popular scre
   
 **Images**  
   
-here](https://tinypng.com/), so your project loads faster. Whatever, I have never, ever, seen a read me file with this much info, EVER, does not happen in real life.
-  
+ 
