@@ -11,10 +11,3 @@
   font-weight: 500;
   src: url("./fonts/Poppins-Medium.ttf") format("truetype");
 }
-
-@font-face {
-  font-family: "Poppins-Thin";
-  font-style: normal;
-  font-weight: 400;
-  src: url("./fonts/Poppins-Thin.ttf") format("truetype");
-}
