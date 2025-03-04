@@ -20,10 +20,10 @@
 .card__title {
   margin: 0;
   padding: 10px;
-  height: 24px;
   font-family: "Poppins-Regular";
   font-size: 20px;
   line-height: 1.2;
+  color: #212121;
   text-overflow: ellipsis;
   white-space: nowrap;
   line-clamp: 1;
@@ -56,7 +56,6 @@
   .card__title {
     font-size: 16px;
     max-width: 254px;
-    height: 20px;
     padding: 8px 0;
   }
 

@@ -7,9 +7,12 @@
   max-width: 1440px;
   min-height: 100vh;
   font-family: "Poppins-Regular", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #212121;
 }
 
 .page__section {
   margin: 0 auto;
   max-width: 1280px;
-  }
+}
