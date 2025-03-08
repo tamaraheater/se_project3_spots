@@ -20,7 +20,8 @@
 .card__title {
   margin: 0;
   padding: 10px;
-  font-family: "Poppins-Regular";
+  font-family: "Poppins";
+  font-weight: 400;
   font-size: 20px;
   line-height: 1.2;
   color: #212121;
