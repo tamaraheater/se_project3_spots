@@ -19,20 +19,20 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
-  height: 190px;
   max-width: 420px;
+  height: 190px;
 }
 
 .profile__name {
-  margin: 0;
+  margin: 0 auto 12px;
   color: #212121;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-size: 36px;
+  font-size: 32px;
   line-height: 1;
+  line-clamp: 3;
   text-overflow: ellipsis;
   overflow: hidden;
-  line-clamp: 3;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -40,16 +40,16 @@
 }
 
 .profile__description {
-  width: 97px;
+  margin: 0 auto 0 0;
   color: #212121;
   opacity: 70%;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
+  line-clamp: 3;
   text-overflow: ellipsis;
   overflow: hidden;
-  line-clamp: 3;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -117,46 +117,52 @@
 @media screen and (max-width: 627px) {
   .profile {
     max-width: 288px;
-    max-height: 288px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding-top: 20px;
-    margin: auto;
+    margin: auto 0;
   }
 
   .profile__avatar {
-    max-width: 88px;
-    max-height: 88px;
+    width: 80px;
+    height: 80px;
     align-items: center;
-    margin: 12px;
+    margin: 0;
+    margin: 0 0 6px;
+  }
+
+  .profile__column {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 288px;
+    max-height: fit-content;
   }
 
   .profile__name {
     max-width: 288px;
     font-size: 20px;
-    margin: 6px;
+    font-weight: 1;
+    margin: 0 0 12px;
   }
 
   .profile__description {
+    margin: 0 auto 0;
     font-size: 16px;
     font-weight: 1;
-    align-items: center;
-    margin: 0 auto 20px;
     max-width: 288px;
   }
 
   .profile__edit-button {
-    margin: 16px auto;
-    width: fit-content;
-    height: 16px;
+    margin: 32px 0 20px;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    gap: 8px;
   }
 
   .profile__add-post-button {
-    margin: 0 auto;
+    margin: 0;
     width: 100%;
   }
 }
