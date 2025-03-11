@@ -20,7 +20,6 @@
 .card__title {
   margin: 0;
   padding: 10px;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.2;
@@ -47,10 +46,17 @@
   opacity: 1;
 }
 
+@media screen and (max-width: 884px) {
+  .card__image {
+    max-width: 349px;
+    max-height: 373px;
+  }
+}
+
 @media screen and (max-width: 627px) {
   .card__image {
     max-width: 288px;
-    max-height: 288px;
+    max-height: 318px;
   }
 
   .card__title {

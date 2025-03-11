@@ -25,16 +25,15 @@
 
 .profile__name {
   margin: 0 auto 12px;
-  color: #212121;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
+  color: #212121;
   font-size: 32px;
   line-height: 1;
+  line-clamp: 3;
   /* There seems to be an arbitary disagreement between MDN and BigTech Google Dev Inspector over the legitimacy of the line-clamp porperty below to which I
    do not have the power to settle. However, from my perspective WITHOUT the property it it creates a KNOWN error in this CSS with MDN and prettier also agrees
-   and marks the error. Therefor my submission would be auto-rejected.  Withthe property in, it creates an error in the developer inspector, however they have finally
+   and marks the error. Therefor my submission would be auto-rejected.  With the property in, it creates an error in the developer inspector, however they have finally
    included the definition, instead of "unknown" which in my view is an admission that it is valid! I am leaving it in with this comment*/
-  line-clamp: 3;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -47,7 +46,6 @@
   margin: 0 auto 0 0;
   color: #212121;
   opacity: 70%;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
@@ -72,7 +70,6 @@
   border: none;
   color: #212121;
   opacity: 70%;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
   padding: 0;
@@ -102,7 +99,6 @@
   gap: 8px;
   background-color: #212121;
   color: #fcf5e5;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
@@ -120,6 +116,13 @@
 
 .profile__add-post-button:hover {
   opacity: 0.8;
+}
+
+@media screen and (max-width: 884px) {
+  .profile__add-post-button {
+    margin: 0;
+    width: auto-fit;
+  }
 }
 
 @media screen and (max-width: 627px) {
