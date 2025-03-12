@@ -17,10 +17,3 @@
     padding-right: 16px;
   }
 }
-
-@media screen and (max-width: 319px) {
-  .content {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-}
