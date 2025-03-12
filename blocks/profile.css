@@ -31,7 +31,7 @@
   line-height: 1;
   line-clamp: 3;
   /* There seems to be an arbitary disagreement between MDN and BigTech Google Dev Inspector over the legitimacy of the line-clamp porperty below to which I
-   do not have the power to settle. However, from my perspective WITHOUT the property it it creates a KNOWN error in this CSS with MDN and prettier also agrees
+   do not have the power to settle. However, from my perspective WITHOUT the property it creates a KNOWN error in this CSS with MDN and prettier also agrees
    and marks the error. Therefor my submission would be auto-rejected.  With the property in, it creates an error in the developer inspector, however they have finally
    included the definition, instead of "unknown" which in my view is an admission that it is valid! I am leaving it in with this comment*/
   text-overflow: ellipsis;
