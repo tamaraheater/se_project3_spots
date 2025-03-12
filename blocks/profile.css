@@ -118,13 +118,6 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 884px) {
-  .profile__add-post-button {
-    margin: 0;
-    width: auto-fit;
-  }
-}
-
 @media screen and (max-width: 627px) {
   .profile {
     max-width: 288px;
@@ -133,7 +126,7 @@
     align-items: center;
     text-align: center;
     padding-top: 20px;
-    margin: auto 0;
+    margin: auto;
   }
 
   .profile__avatar {
