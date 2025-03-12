@@ -12,7 +12,7 @@
   height: 190px;
   object-position: center;
   margin-right: 20px;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 .profile__column {
@@ -140,7 +140,6 @@
     width: 80px;
     height: 80px;
     align-items: center;
-    margin: 0;
     margin: 0 0 6px;
   }
 
@@ -154,14 +153,14 @@
   .profile__name {
     max-width: 288px;
     font-size: 20px;
-    font-weight: 1;
+    line-height: 1;
     margin: 0 0 12px;
   }
 
   .profile__description {
     margin: 0 auto 0;
     font-size: 16px;
-    font-weight: 1;
+    line-height: 1;
     max-width: 288px;
   }
 

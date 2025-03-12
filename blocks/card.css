@@ -5,7 +5,7 @@
 .card__image {
   margin: 0;
   width: 413px;
-  height: 445px;
+  height: 413px;
   object-fit: cover;
   display: block;
   border-radius: 8px;
@@ -19,7 +19,7 @@
 
 .card__title {
   margin: 0;
-  padding: 10px;
+  padding: 10px 0;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.2;
@@ -27,7 +27,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 413px;
+  max-width: 408px;
 }
 
 .card__like-button {
@@ -49,14 +49,14 @@
 @media screen and (max-width: 884px) {
   .card__image {
     max-width: 349px;
-    max-height: 373px;
+    max-height: 349px;
   }
 }
 
 @media screen and (max-width: 627px) {
   .card__image {
     max-width: 288px;
-    max-height: 318px;
+    max-height: 288px;
   }
 
   .card__title {
