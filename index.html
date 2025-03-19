@@ -48,23 +48,6 @@
           />New Post
         </button>
       </section>
-      <div class="modal modal__opened">
-        <div class="modal__container">
-          <button type="submit" class="modal__close-button"></button>
-          <h2 class="modal__title">Edit Profile</h2>
-          <form name="edit-profile" class="modal__form">
-            <label for="name" class="modal__label"
-              >Name
-              <input id="name" type="text" class="modal__input" />
-            </label>
-            <label for="description" class="modal__label"
-              >Description
-              <input id="description" type="text" class="modal__input" />
-            </label>
-            <button type="submit" class="modal__submit-button"></button>
-          </form>
-        </div>
-      </div>
       <section class="cards page__section">
         <ul class="cards__list">
           <li class="card">
@@ -136,6 +119,33 @@
         </ul>
       </section>
     </main>
+    <div class="modal modal__opened">
+      <div class="modal__container">
+        <button type="submit" class="modal__close-button"></button>
+        <h2 class="modal__title">Edit Profile</h2>
+        <form name="edit-profile" class="modal__form">
+          <label for="name" class="modal__label"
+            >Name
+            <input
+              id="name"
+              type="text"
+              class="modal__input"
+              placeholder="Enter your name"
+            />
+          </label>
+          <label for="description" class="modal__label"
+            >Descriprion
+            <input
+              id="description"
+              type="text"
+              class="modal__input"
+              placeholder="Describe yourself"
+            />
+          </label>
+          <button type="submit" class="modal__submit-button">Save</button>
+        </form>
+      </div>
+    </div>
     <footer class="footer">
       <p class="footer__copyright">2025 &copy; Spots</p>
     </footer>
