@@ -25,9 +25,9 @@ const initialCards = [
   },
 ];
 
-const profileEditButton = dovument.querySelector(".profile__edit-button");
+const profileEditButton = document.querySelector(".profile__edit-button");
 
-const editModal = dovument.querySelector("#edit-modal");
+const editModal = document.querySelector("#edit-modal");
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
 
 function openModal() {
