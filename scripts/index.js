@@ -35,9 +35,10 @@ function getCardElement(data) {
     .cloneNode(true);
 
   const cardNameEl = cardElement.querySelector(".card__title");
+  //select image element
 
   cardNameEl.textContent = data.name;
-
+  //assign values to src and alt
   return cardElement;
 }
 
