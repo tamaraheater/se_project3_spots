@@ -21,12 +21,13 @@ const initialCards = [
   },
   {
     name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+    link: "../images/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
 
 const cardTemplate = document.querySelector("#card-template");
-const cardsList = document.querySelector("cards__list");
+console.log(cardTemplate);
+const cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
   console.log(data);
@@ -34,11 +35,12 @@ function getCardElement(data) {
     .querySelector(".card")
     .cloneNode(true);
 
-  const cardNameEl = cardElement.querySelector(".card__title");
-  //select image element
+  const cardNameElement = cardElement.querySelector(".card__title");
+  const cardImageElement = cardElement.querySelector(".card__image");
 
-  cardNameEl.textContent = data.name;
-  //assign values to src and alt
+  cardNameElement.textContent = data.name;
+  cardImageElement.src = data.link;
+  cardImageElement.alt = data.name;
   return cardElement;
 }
 
