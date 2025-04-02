@@ -74,13 +74,21 @@
 }
 
 .modal__input {
+  background-color: #fff;
   max-width: 630px;
   border-radius: 8px;
+  border-color: #212121;
   font-weight: 500;
   font-size: 20px;
   line-height: 1;
   color: #212121;
   padding: 16px 12px;
+  opacity: 40%;
+}
+
+.modal__input:hover {
+  border-color: #212121;
+  cursor: pointer;
 }
 
 .modal__input::placeholder {
