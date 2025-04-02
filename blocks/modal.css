@@ -32,7 +32,7 @@
 }
 
 .modal__close-button {
-  background-image: url();
+  background-image: url(../images/Close-icon.svg);
   background-color: #fff;
   border: none;
   position: absolute;
@@ -40,6 +40,9 @@
   right: 50px;
   width: 40px;
   height: 40px;
+}
+
+.modal__close-button:hover {
 }
 
 .modal__title {
