@@ -26,15 +26,12 @@ const initialCards = [
 ];
 
 const cardTemplate = document.querySelector("#card-template");
-console.log(cardTemplate);
 const cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
-  console.log(data);
   const cardElement = cardTemplate.content
     .querySelector(".card")
     .cloneNode(true);
-
   const cardNameElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
 
