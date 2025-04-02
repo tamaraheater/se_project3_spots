@@ -70,37 +70,28 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.1;
-  opacity: 70%;
+  color: rgba(33, 33, 33, 0.7);
 }
 
 .modal__input {
-  background-color: #fff;
   max-width: 630px;
   border-radius: 8px;
-  border-color: #212121;
+  border-color: rgba(33, 33, 33, 0.4);
   font-weight: 500;
   font-size: 20px;
   line-height: 1;
   color: #212121;
   padding: 16px 12px;
-  opacity: 40%;
-}
-
-.modal__input:hover {
-  border-color: #212121;
   cursor: pointer;
 }
 
+.modal__input:hover {
+  border-color: rgb(33, 33, 33);
+}
+
 .modal__input::placeholder {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1;
   color: #212121;
-  opacity: 40%;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  padding-left: 12px;
-  margin-right: auto;
+  opacity: 30%;
 }
 
 .modal__submit-button {
