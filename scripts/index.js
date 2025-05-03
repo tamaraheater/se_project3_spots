@@ -1,6 +1,6 @@
 const initialCards = [
   {
-    name: "Val Thorens",
+    name: "Winter Ski Lodge",
     link: "./images/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
   {
