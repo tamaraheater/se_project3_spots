@@ -36,9 +36,17 @@ const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
+
 // Card Variables//
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
+const newPostButton = document.querySelector(".profile__add-post-button");
+const newPostModal = document.querySelector("#new-post-modal");
+const newPostCloseButton = newPostModal.querySelector(".modal__close-button");
+const newPostFormElement = newPostModal.querySelector(".modal__form");
+const newPostImageInput = newPostModal.querySelector("#card-image-input");
+const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
+
 //Card Functions//
 function getCardElement(data) {
   const cardElement = cardTemplate.content
@@ -57,24 +65,59 @@ for (let i = 0; i < initialCards.length; i++) {
   const cardElement = getCardElement(initialCards[i]);
   cardsList.append(cardElement);
 }
-//Profile Functions//
-function openModal() {
+
+//Modal Functions//
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+}
+
+profileEditButton.addEventListener("click", function () {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
-  editModal.classList.add("modal_opened");
+  openModal(editModal);
+});
+
+newPostButton.addEventListener("click", function () {
+  openModal(newPostModal);
+});
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
 }
 
-function closeModal() {
-  editModal.classList.remove("modal_opened");
-}
+editModalCloseButton.addEventListener("click", function () {
+  closeModal(editModal);
+});
 
-function handleEditFormSubmit(evt) {
+newPostCloseButton.addEventListener("click", function () {
+  closeModal(newPostModal);
+});
+
+//Submit Handlers//
+
+editFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
   profileName.textContent = editModalNameInput.value;
   profileDescription.textContent = editModalDescriptionInput.value;
-  closeModal();
-}
-//Event Listners//
-profileEditButton.addEventListener("click", openModal);
-editModalCloseButton.addEventListener("click", closeModal);
-editFormElement.addEventListener("submit", handleEditFormSubmit);
+  closeModal(editModal);
+});
+
+newPostFormElement.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+
+  // 1.need link and name for new post
+  // 2.get name and link from form inputs
+  const name = newPostCaptionInput.value;
+  const link = newPostImageInput.value;
+
+  // 3.generate post
+  const newPostData = { name: name, link: link };
+  const newPost = getCardElement(newPostData);
+
+  // 4. add to cards page section
+  cardsList.prepend(newPost);
+
+  closeModal(newPostModal);
+  // 4.newPostFormElement.reset();
+  evt.target.reset();
+});
