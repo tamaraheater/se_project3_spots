@@ -73,40 +73,73 @@
           </template>
         </ul>
       </section>
-    </main>
-    <div class="modal" id="edit-open-modal">
-      <div class="modal__container">
-        <button
-          aria-label="Close Button"
-          type="button"
-          class="modal__close-button"
-        ></button>
-        <h2 class="modal__title">Edit Profile</h2>
-        <form name="edit-profile" class="modal__form">
-          <label for="profile-name-input" class="modal__label"
-            >Name
-            <input
-              id="profile-name-input"
-              required
-              type="text"
-              class="modal__input"
-              placeholder="Enter your name"
-            />
-          </label>
-          <label for="profile-description-input" class="modal__label"
-            >Description
-            <input
-              id="profile-description-input"
-              required
-              type="text"
-              class="modal__input"
-              placeholder="Describe yourself"
-            />
-          </label>
-          <button type="submit" class="modal__submit-button">Save</button>
-        </form>
+      <div class="modal" id="edit-open-modal">
+        <div class="modal__container">
+          <button
+            aria-label="Close Button"
+            type="button"
+            class="modal__close-button"
+          ></button>
+          <h2 class="modal__title">Edit Profile</h2>
+          <form name="edit-profile" class="modal__form">
+            <label for="profile-name-input" class="modal__label"
+              >Name
+              <input
+                id="profile-name-input"
+                required
+                type="text"
+                class="modal__input"
+                placeholder="Enter your name"
+              />
+            </label>
+            <label for="profile-description-input" class="modal__label"
+              >Description
+              <input
+                id="profile-description-input"
+                required
+                type="text"
+                class="modal__input"
+                placeholder="Describe yourself"
+              />
+            </label>
+            <button type="submit" class="modal__submit-button">Save</button>
+          </form>
+        </div>
       </div>
-    </div>
+      <div class="modal" id="new-post-modal">
+        <div class="modal__container">
+          <button
+            aria-label="Close Button"
+            type="button"
+            class="modal__close-button"
+          ></button>
+          <h2 class="modal__title">New Post</h2>
+          <form name="card-input" class="modal__form">
+            <label for="card-image-input" class="modal__label"
+              >Image Link
+              <input
+                id="card-image-input"
+                required
+                type="url"
+                class="modal__input"
+                placeholder="Enter Your Image Link"
+              />
+            </label>
+            <label for="card-caption-input" class="modal__label"
+              >Caption
+              <input
+                id="card-caption-input"
+                required
+                type="text"
+                class="modal__input"
+                placeholder="Enter Caption Text"
+              />
+            </label>
+            <button type="submit" class="modal__submit-button">Save</button>
+          </form>
+        </div>
+      </div>
+    </main>
     <footer class="footer">
       <p class="footer__copyright">2025 &copy; Spots</p>
     </footer>
