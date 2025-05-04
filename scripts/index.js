@@ -47,7 +47,7 @@ const newPostFormElement = newPostModal.querySelector(".modal__form");
 const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
 
-//Card Functions//
+//Card Element Functions//
 function getCardElement(data) {
   const cardElement = cardTemplate.content
     .querySelector(".card")
@@ -58,6 +58,12 @@ function getCardElement(data) {
   cardNameElement.textContent = data.name;
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
+
+  const cardLikeButtonEl = cardElement.querySelector(".card__like-button");
+  cardLikeButtonEl.addEventListener("click", () => {
+    cardLikeButtonEl.classList.toggle(".card__like-button_active");
+  });
+
   return cardElement;
 }
 
