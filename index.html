@@ -60,6 +60,11 @@
         <ul class="cards__list">
           <template id="card-template">
             <li class="card">
+              <button
+                aria-label="Delete Card Image"
+                class="card__delete-button"
+                type="button"
+              ></button>
               <img class="card__image" src="" alt="" />
               <div class="card__content">
                 <h2 class="card__title"></h2>
@@ -137,6 +142,21 @@
             </label>
             <button type="submit" class="modal__submit-button">Save</button>
           </form>
+        </div>
+      </div>
+      <div class="modal" id="preview-modal">
+        <div class="modal__preview-container">
+          <button
+            aria-label="Close Modal"
+            type="button"
+            class="modal__close-button modal__close-button_type_preview"
+          ></button>
+          <img
+            src="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
+            alt=""
+            class="modal__preview-image"
+          />
+          <p class="modal__preview-caption">Golden Gate Bridge</p>
         </div>
       </div>
     </main>

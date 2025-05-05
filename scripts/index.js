@@ -1,5 +1,10 @@
 const initialCards = [
   {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+
+  {
     name: "Winter Ski Lodge",
     link: "./images/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
@@ -61,7 +66,13 @@ function getCardElement(data) {
 
   const cardLikeButtonEl = cardElement.querySelector(".card__like-button");
   cardLikeButtonEl.addEventListener("click", () => {
-    cardLikeButtonEl.classList.toggle(".card__like-button_active");
+    cardLikeButtonEl.classList.toggle("card__like-button_active");
+  });
+
+  const cardDeletteButtonEl = cardElement.querySelector(".card__delete-button");
+  cardDeletteButtonEl.addEventListener("click", () => {
+    cardElement.remove();
+    cardElement = null;
   });
 
   return cardElement;
