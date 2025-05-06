@@ -3,7 +3,6 @@ const initialCards = [
     name: "Golden Gate Bridge",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
-
   {
     name: "Winter Ski Lodge",
     link: "./images/1-photo-by-moritz-feldmann-from-pexels.jpg",
@@ -56,6 +55,7 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseButton = previewModal.querySelector(
   ".modal__close-button"
 );
+
 const modalPreviewImageEl = previewModal.querySelector(".modal__preview-image");
 const modalPreviewCaptionEl = previewModal.querySelector(
   ".modal__preview-caption"
@@ -86,7 +86,7 @@ function getCardElement(data) {
 
   cardImageElement.addEventListener("click", () => {
     modalPreviewImageEl.src = data.link;
-    modalPreviewCaptionEl.alt = data.caption;
+    modalPreviewCaptionEl.alt = data.name;
     openModal(previewModal);
   });
 

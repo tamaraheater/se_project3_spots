@@ -41,7 +41,6 @@
   right: 50px;
   width: 40px;
   height: 40px;
-  display: flex;
 }
 
 .modal__close-button_type_preview {
@@ -52,7 +51,8 @@
   width: 40px;
   height: 40px;
   background-color: transparent;
-  opacity: 1;
+  opacity: 0.6;
+  padding: 0;
 }
 
 .modal__close-button:hover {
@@ -62,7 +62,7 @@
 
 .modal__close-button_type_preview:hover {
   background-color: #212121;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 .modal__title {
@@ -184,5 +184,10 @@
 
   .modal__submit-button {
     width: 100%;
+  }
+
+  .modal__preview-image {
+    min-width: 288px;
+    min-height: 288px;
   }
 }
