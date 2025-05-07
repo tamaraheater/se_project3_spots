@@ -78,10 +78,9 @@ function getCardElement(data) {
     cardLikeButtonEl.classList.toggle("card__like-button_active");
   });
 
-  const cardDeletteButtonEl = cardElement.querySelector(".card__delete-button");
-  cardDeletteButtonEl.addEventListener("click", () => {
+  const cardDeleteButtonEl = cardElement.querySelector(".card__delete-button");
+  cardDeleteButtonEl.addEventListener("click", () => {
     cardElement.remove();
-    cardElement = null;
   });
 
   cardImageElement.addEventListener("click", () => {
@@ -94,10 +93,9 @@ function getCardElement(data) {
   return cardElement;
 }
 
-for (let i = 0; i < initialCards.length; i++) {
-  const cardElement = getCardElement(initialCards[i]);
-  cardsList.append(cardElement);
-}
+initialCards.forEach((card) => {
+  cardsList.append(getCardElement(card));
+});
 
 //Modal Functions//
 function openModal(modal) {
@@ -152,9 +150,8 @@ newPostFormElement.addEventListener("submit", function (evt) {
   const newPost = getCardElement(newPostData);
 
   // 4. add to cards page section
-  cardsList.prepend(newPost);
-
-  closeModal(newPostModal);
   // 4.newPostFormElement.reset();
+  cardsList.prepend(newPost);
   evt.target.reset();
+  closeModal(newPostModal);
 });

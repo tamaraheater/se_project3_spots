@@ -12,13 +12,14 @@
   justify-content: center;
   padding: 0 20px;
   visibility: hidden;
-  opacity: 0;
 }
 
 .modal_opened {
   visibility: visible;
   opacity: 1;
-  transition: opacity 0.6s linear;
+  /* Placed transition back here, as I was getting a breaking warning when on
+  modal element, but kept your suggestions it works great */
+  transition: visibility 0.6s, opacity 0.3s, ease-in;
 }
 
 .modal__container {
@@ -144,6 +145,8 @@
 .modal__preview-caption {
   color: #fff;
   background-color: #212121;
+  margin: 0;
+  margin-top: 8px;
   max-width: fit-content;
   max-height: fit-content;
   padding: 4px 8px;
@@ -160,7 +163,7 @@
   }
 
   .modal__title {
-    font: size 20px;
+    font-size: 20px;
     margin: 10px 0 32px;
   }
 
@@ -187,7 +190,7 @@
   }
 
   .modal__preview-image {
-    min-width: 288px;
-    min-height: 288px;
+    max-width: none;
+    max-height: none;
   }
 }
