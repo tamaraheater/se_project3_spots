@@ -34,6 +34,7 @@
 .modal__close-button {
   background-image: url(../images/Close-icon.svg);
   background-color: white;
+  background-position: center;
   opacity: 40%;
   border: none;
   position: absolute;
@@ -51,7 +52,7 @@
   width: 40px;
   height: 40px;
   background-color: transparent;
-  opacity: 0.6;
+  opacity: 1;
   padding: 0;
 }
 
@@ -61,8 +62,7 @@
 }
 
 .modal__close-button_type_preview:hover {
-  background-color: #212121;
-  opacity: 1;
+  opacity: 0.4;
 }
 
 .modal__title {
