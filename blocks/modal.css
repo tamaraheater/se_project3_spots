@@ -151,6 +151,7 @@
   max-height: fit-content;
   padding: 4px 8px;
   border-radius: 8px;
+  font-size: 16px;
 }
 
 @media screen and (max-width: 627px) {
