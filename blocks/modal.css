@@ -193,6 +193,9 @@
   .modal__preview-image {
     max-width: none;
     max-height: none;
+  }
+
+  .modal__preview-caption {
     font-size: 16px;
   }
 }
