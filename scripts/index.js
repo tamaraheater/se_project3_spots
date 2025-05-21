@@ -140,17 +140,12 @@ editFormElement.addEventListener("submit", function (evt) {
 newPostFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  // 1.need link and name for new post
-  // 2.get name and link from form inputs
   const name = newPostCaptionInput.value;
   const link = newPostImageInput.value;
 
-  // 3.generate post
   const newPostData = { name: name, link: link };
   const newPost = getCardElement(newPostData);
 
-  // 4. add to cards page section
-  // 4.newPostFormElement.reset();
   cardsList.prepend(newPost);
   evt.target.reset();
   closeModal(newPostModal);
