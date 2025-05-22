@@ -107,6 +107,10 @@
   border-color: rgb(33, 33, 33);
 }
 
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
 .modal__input::placeholder {
   color: #212121;
   opacity: 30%;
@@ -131,6 +135,10 @@
   border-radius: 8px;
   padding: 18px 32px;
   cursor: pointer;
+}
+
+.modal__submit-button:disabled {
+  opacity: 50%;
 }
 
 .modal__submit-button:hover {

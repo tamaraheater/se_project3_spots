@@ -1,3 +1,49 @@
+const showInputError = (formEl, inputEl, errorMsg) => {
+  const errorMsgID = inputEl.id + "-error";
+  const errorMsgEL = formEl.querySelector("#" + errorMsgID);
+  errorMsgEL.textContent = errorMsg;
+  inputEl.classList.add("modal__input_type_error");
+  console.log(errorMsgID);
+};
+
+const hideInputError = (formEl, inputEl) => {
+  const errorMsgID = inputEl.id + "-error";
+  const errorMsgEL = formEl.querySelector("#" + errorMsgID);
+  errorMsgEL.textContent = "";
+  inputEl.classList.remove("modal__input_type_error");
+};
+
+const checkInputValidity = (formEl, inputEl) => {
+  if (!inputEl.validity.valid) {
+    showInputError(formEl, inputEl, inputEl.validationMessage);
+  } else {
+    hideInputError(formEl, inputEl);
+  }
+};
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((input) => {
+    return !input.validity.valid;
+  });
+};
+
+//error on save button not remaing gray on error, error message not showing on caption, profile allows save w/invalid input
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.disabled = true;
+    inputList.classList.add("modal__submit-button:disabled");
+  } else {
+    buttonElement.disabled = false;
+    inputList.classList.remove("modal__submit-button:disabled");
+  }
+};
+
+const resetValidation = (formEl, inputList) => {
+  inputList.foreach((input) => {
+    hideInputError(formEl, input);
+  });
+};
+
 const setEventListeners = (formEl) => {
   const inputList = Array.from(formEl.querySelectorAll(".modal__input"));
   const buttonElement = formEl.querySelectorAll("modal__submit-button");
@@ -5,11 +51,12 @@ const setEventListeners = (formEl) => {
   console.log(inputList);
   console.log(buttonElement);
 
-  toggleButtonState(inputList, buttonElement);
+  //TODO: handle initial states
+  //toggleButtonState(inputList, buttonElement);
 
-  inputList.forEach((inputEvent) => {
-    inputEvent.addEventListener("input", function () {
-      checkInputValidity(formEl, inputEvent);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", function () {
+      checkInputValidity(formEl, inputElement);
       toggleButtonState(inputList, buttonElement);
     });
   });
