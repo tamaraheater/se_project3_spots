@@ -27,23 +27,6 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-//error on save button not remaing gray on error, error message not showing on caption, profile allows save w/invalid input
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.disabled = true;
-    inputList.classList.add("modal__submit-button:disabled");
-  } else {
-    buttonElement.disabled = false;
-    inputList.classList.remove("modal__submit-button:disabled");
-  }
-};
-
-const resetValidation = (formEl, inputList) => {
-  inputList.foreach((input) => {
-    hideInputError(formEl, input);
-  });
-};
-
 const setEventListeners = (formEl) => {
   const inputList = Array.from(formEl.querySelectorAll(".modal__input"));
   const buttonElement = formEl.querySelectorAll("modal__submit-button");
@@ -57,7 +40,7 @@ const setEventListeners = (formEl) => {
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formEl, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      //toggleButtonState(inputList, buttonElement);
     });
   });
 };
