@@ -17,9 +17,7 @@
 .modal_opened {
   visibility: visible;
   opacity: 1;
-  /* Placed transition back here, as I was getting a breaking warning when on
-  modal element, but kept your suggestions it works great */
-  transition: visibility 0.6s, opacity 0.3s, ease-in;
+  transition: visibility 0.6s, opacity 0.3, linear;
 }
 
 .modal__container {
@@ -113,10 +111,10 @@
 
 .modal__input::placeholder {
   color: #212121;
-  opacity: 30%;
+  opacity: 0.3;
 }
 
-.modal__error {
+.modal__error_visible {
   color: #ff0000;
   opacity: 70%;
   font-size: 16px;
@@ -137,12 +135,13 @@
   cursor: pointer;
 }
 
-.modal__submit-button:disabled {
-  opacity: 50%;
+.modal__submit-button_disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .modal__submit-button:hover {
-  opacity: 80%;
+  opacity: 0.8;
 }
 
 .modal__preview-container {

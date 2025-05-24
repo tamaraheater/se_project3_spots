@@ -50,12 +50,11 @@ const newPostCloseButton = newPostModal.querySelector(".modal__close-button");
 const newPostFormElement = newPostModal.querySelector(".modal__form");
 const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
-
+const newPostSubmitButton = newPostModal.querySelector(".modal__submit-button");
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseButton = previewModal.querySelector(
   ".modal__close-button"
 );
-
 const modalPreviewImageEl = previewModal.querySelector(".modal__preview-image");
 const modalPreviewCaptionEl = previewModal.querySelector(
   ".modal__preview-caption"
@@ -148,5 +147,6 @@ newPostFormElement.addEventListener("submit", function (evt) {
 
   cardsList.prepend(newPost);
   evt.target.reset();
+  disableButton(newPostSubmitButton);
   closeModal(newPostModal);
 });

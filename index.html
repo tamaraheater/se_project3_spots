@@ -86,7 +86,7 @@
             class="modal__close-button"
           ></button>
           <h2 class="modal__title">Edit Profile</h2>
-          <form class="modal__form" id="edit-profile-form" novalidate>
+          <form class="modal__form" id="edit-profile-modal" novalidate>
             <label for="profile-name-input" class="modal__label"
               >Name
               <input
@@ -98,7 +98,10 @@
                 class="modal__input"
                 placeholder="Enter your name"
               />
-              <span id="profile-name-input-error" class="modal__error"></span>
+              <span
+                id="profile-name-input-error-msg"
+                class="modal__error_visible"
+              ></span>
             </label>
             <label for="profile-description-input" class="modal__label"
               >Description
@@ -112,8 +115,8 @@
                 placeholder="Describe yourself"
               />
               <span
-                id="profile-description-input-error"
-                class="modal__error"
+                id="profile-description-input-error-msg"
+                class="modal__error_visible"
               ></span>
             </label>
             <button type="submit" class="modal__submit-button">Save</button>
@@ -128,7 +131,7 @@
             class="modal__close-button"
           ></button>
           <h2 class="modal__title">New Post</h2>
-          <form class="modal__form" id="card-input-form" novalidate>
+          <form class="modal__form" id="new-post-modal" novalidate>
             <label for="card-image-input" class="modal__label"
               >Image Link
               <input
@@ -138,7 +141,10 @@
                 class="modal__input"
                 placeholder="Enter Your Image Link"
               />
-              <span id="card-image-input-error" class="modal__error"></span>
+              <span
+                id="card-image-input-error-msg"
+                class="modal__error_visible"
+              ></span>
             </label>
             <label for="card-caption-input" class="modal__label"
               >Caption
@@ -151,7 +157,10 @@
                 class="modal__input"
                 placeholder="Enter Caption Text"
               />
-              <span id="card-caption-input-error" class="modal__error"></span>
+              <span
+                id="card-caption-input-error-msg"
+                class="modal__error_visible"
+              ></span>
             </label>
             <button type="submit" class="modal__submit-button">Save</button>
           </form>
