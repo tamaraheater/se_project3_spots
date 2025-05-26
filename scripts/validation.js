@@ -1,3 +1,12 @@
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-button",
+  inactiveButtonClass: "modal__submit-button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorMsgID = inputElement.id + "-error-msg";
   const errorMessageElement = formElement.querySelector("#" + errorMsgID);
@@ -70,4 +79,4 @@ const enableValidation = () => {
   });
 };
 
-enableValidation();
+enableValidation(settings);

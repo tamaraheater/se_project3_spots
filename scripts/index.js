@@ -112,7 +112,7 @@ newPostButton.addEventListener("click", function () {
   openModal(newPostModal);
 });
 
-//I have tried every code out there to clost the modal on excape key and click overlay, and so far none work!
+//I have tried every code out there to close the modal on excape key and click overlay, and so far none work!
 //modal.classList.add("open");//
 //document.addEventListener("keydown", handleEscClose);
 //modal.addEventListener("click", handleOverlayClose);
@@ -134,7 +134,7 @@ previewModalCloseButton.addEventListener("click", function () {
   closeModal(previewModal);
 });
 
-//I have tried every code out there to clost the modal on excape key and click overlay, and so far none work!
+//I have tried every code out there to close the modal on excape key and click overlay, and so far none work!
 //modals.forEach((editModal, newPostModal, previewModal) => {
 // modal.classList.remove("open");
 //document.removeEventListener("keydown", handleEscClose);
