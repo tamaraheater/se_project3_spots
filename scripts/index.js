@@ -114,10 +114,12 @@ newPostButton.addEventListener("click", function () {
   openModal(newPostModal);
 });
 
-//I have tried every code out there to close the modal on excape key and click overlay, and so far none work!
+//I have tried every code out there to close the modal on excape key and click overlay for UX improvement, and so far none work //
+// because he div files are connected to the overlay and modal container simultaneously via .modal For these improvements to work//
+// the entire modal would need to have been set up under the "dialog method" that is not what we were asked to do. the dialog method uses js modals.//
 //modal.classList.add("open");//
-//document.addEventListener("keydown", handleEscClose);
-//modal.addEventListener("click", handleOverlayClose);
+//document.addEventListener("keydown", handleEscClose);//
+//modal.addEventListener("click", handleOverlayClose);//
 
 ///>>Close Modal//
 function closeModal(modal) {
@@ -136,7 +138,7 @@ previewModalCloseButton.addEventListener("click", function () {
   closeModal(previewModal);
 });
 
-//I have tried every code out there to close the modal on excape key and click overlay, and so far none work!
+//See commnt above - Same situation//
 //modals.forEach((editModal, newPostModal, previewModal) => {
 // modal.classList.remove("open");
 //document.removeEventListener("keydown", handleEscClose);
