@@ -7,31 +7,34 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorMsgID = inputElement.id + "-error-msg";
   const errorMessageElement = formElement.querySelector("#" + errorMsgID);
   errorMessageElement.textContent = errorMessage;
-  inputElement.classList.add("modal__input_type_error");
-  errorMessageElement.classList.add("modal__error_visible");
-  console.log(errorMsgID);
+  inputElement.classList.add(config.inputErrorClass);
+  errorMessageElement.classList.add(config.errorClass);
 };
 
 //On the site you must physically click on container sometimes to see red border, after causing error, and must type to
 // remove as autoform fill works on some dialoge boxes and not others
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, config) => {
   const errorMsgID = inputElement.id + "-error-msg";
   const errorMessageElement = formElement.querySelector("#" + errorMsgID);
-  inputElement.classList.remove("modal__input_type_error");
-  errorMessageElement.classList.remove("modal__error_visible");
+  inputElement.classList.remove(config.inputErrorClass);
+  errorMessageElement.classList.remove(config.errorClass);
   errorMessageElement.textContent = "";
 };
 
-const checkInputValidity = (formElement, inputElement) => {
-  console.log(inputElement.validity.valid);
+const checkInputValidity = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(
+      formElement,
+      inputElement,
+      inputElement.validationMessage,
+      config
+    );
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, config);
   }
 };
 
@@ -42,40 +45,42 @@ const hasInvalidInput = (inputList) => {
 };
 
 //On the site you must physicaly type to see the disable button change, autoform fill works on some dialoge boxes and not others
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.disabled = true;
-    buttonElement.classList.add("modal__submit-button_disabled");
+    buttonElement.classList.add(config.inactiveButtonClass);
   } else {
     buttonElement.disabled = false;
-    buttonElement.classList.remove("modal__submit-button_disabled");
+    buttonElement.classList.remove(config.inactiveButtonClass);
   }
 };
 
-const resetValidation = (formElement, inputList) => {
+const resetValidation = (formElement, inputList, config) => {
   inputList.forEach((input) => {
-    hideInputError(formElement, input);
+    hideInputError(formElement, input, config);
   });
 };
 
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(".modal__input"));
-  const buttonElement = formElement.querySelector(".modal__submit-button");
+const setEventListeners = (formElement, config) => {
+  const inputList = Array.from(
+    formElement.querySelectorAll(config.inputSelector)
+  );
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElement);
+  toggleButtonState(inputList, buttonElement, config);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      checkInputValidity(formElement, inputElement, config);
+      toggleButtonState(inputList, buttonElement, config);
     });
   });
 };
 
-const enableValidation = () => {
-  const formList = document.querySelectorAll(".modal__form");
+const enableValidation = (config) => {
+  const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((formElement) => {
-    setEventListeners(formElement);
+    setEventListeners(formElement, config);
   });
 };
 
