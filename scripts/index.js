@@ -97,6 +97,7 @@ initialCards.forEach((card) => {
 });
 
 //Modal Functions//
+//>>Open Modal//
 function openModal(modal) {
   modal.classList.add("modal_opened");
 }
@@ -111,6 +112,12 @@ newPostButton.addEventListener("click", function () {
   openModal(newPostModal);
 });
 
+//I have tried every code out there to clost the modal on excape key and click overlay, and so far none work!
+//modal.classList.add("open");//
+//document.addEventListener("keydown", handleEscClose);
+//modal.addEventListener("click", handleOverlayClose);
+
+///>>Close Modal//
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
@@ -127,8 +134,14 @@ previewModalCloseButton.addEventListener("click", function () {
   closeModal(previewModal);
 });
 
-//Submit Handlers//
+//I have tried every code out there to clost the modal on excape key and click overlay, and so far none work!
+//modals.forEach((editModal, newPostModal, previewModal) => {
+// modal.classList.remove("open");
+//document.removeEventListener("keydown", handleEscClose);
+// modal.removeEventListener("click", handleOverlayClose);
+//});
 
+//Submit Handlers//
 editFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
   profileName.textContent = editModalNameInput.value;
