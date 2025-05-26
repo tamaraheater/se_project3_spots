@@ -34,7 +34,7 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const editModal = document.querySelector("#edit-open-modal");
-const editFormElement = editModal.querySelector(".modal__form");
+const editFormElement = editModal.querySelector(config.formSelector);
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
 const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector(
@@ -47,10 +47,12 @@ const cardsList = document.querySelector(".cards__list");
 const newPostButton = document.querySelector(".profile__add-post-button");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseButton = newPostModal.querySelector(".modal__close-button");
-const newPostFormElement = newPostModal.querySelector(".modal__form");
+const newPostFormElement = newPostModal.querySelector(config.formSelector);
 const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
-const newPostSubmitButton = newPostModal.querySelector(".modal__submit-button");
+const newPostSubmitButton = newPostModal.querySelector(
+  config.submitButtonSelector
+);
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseButton = previewModal.querySelector(
   ".modal__close-button"
@@ -163,3 +165,5 @@ newPostFormElement.addEventListener("submit", function (evt) {
   disableButton(newPostSubmitButton);
   closeModal(newPostModal);
 });
+
+enableValidation(settings);
