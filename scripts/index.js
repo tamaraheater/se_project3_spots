@@ -34,7 +34,7 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const editModal = document.querySelector("#edit-open-modal");
-const editFormElement = editModal.querySelector(config.formSelector);
+const editFormElement = editModal.querySelector(".modal__form");
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
 const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector(
@@ -47,12 +47,10 @@ const cardsList = document.querySelector(".cards__list");
 const newPostButton = document.querySelector(".profile__add-post-button");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseButton = newPostModal.querySelector(".modal__close-button");
-const newPostFormElement = newPostModal.querySelector(config.formSelector);
+const newPostFormElement = newPostModal.querySelector(".modal__form");
 const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
-const newPostSubmitButton = newPostModal.querySelector(
-  config.submitButtonSelector
-);
+const newPostSubmitButton = newPostModal.querySelector(".modal__submit-button");
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseButton = previewModal.querySelector(
   ".modal__close-button"
@@ -114,14 +112,14 @@ newPostButton.addEventListener("click", function () {
   openModal(newPostModal);
 });
 
-//I have tried every code out there to close the modal on excape key and click overlay for UX improvement, and so far none work //
-// because he div files are connected to the overlay and modal container simultaneously via .modal For these improvements to work//
-// the entire modal would need to have been set up under the "dialog method" that is not what we were asked to do. the dialog method uses js modals.//
-//modal.classList.add("open");//
-//document.addEventListener("keydown", handleEscClose);//
-//modal.addEventListener("click", handleOverlayClose);//
+//I have tried every code out there to close the modal on excape key and click overlay for UX improvement, and so far none work
+// because he div files are connected to the overlay and modal container simultaneously via .modal For these improvements to work
+// the entire modal would need to have been set up under the "dialog method" that is not what we were asked to do. the dialog method uses js modals.
+//modal.classList.add("open");
+//document.addEventListener("keydown", handleEscClose);
+//modal.addEventListener("click", handleOverlayClose);
 
-///>>Close Modal//
+// Close Modal
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
@@ -167,5 +165,3 @@ newPostFormElement.addEventListener("submit", function (evt) {
   disableButton(newPostSubmitButton);
   closeModal(newPostModal);
 });
-
-enableValidation(settings);
