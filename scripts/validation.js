@@ -15,8 +15,6 @@ const showInputError = (formElement, inputElement, errorMessage, config) => {
   errorMessageElement.classList.add(config.errorClass);
 };
 
-//On the site you must physically click on container sometimes to see red border, after causing error, and must type to
-// remove as autoform fill works on some dialoge boxes and not others
 const hideInputError = (formElement, inputElement, config) => {
   const errorMsgID = inputElement.id + "-error-msg";
   const errorMessageElement = formElement.querySelector("#" + errorMsgID);
@@ -44,9 +42,8 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-//On the site you must physicaly type to see the disable button change, autoform fill works on some dialoge boxes and not others
 const toggleButtonState = (inputList, buttonElement, config) => {
-  if (hasInvalidInput(inputList)) {
+  if (hasInvalidInput(inputList, config)) {
     buttonElement.disabled = true;
     buttonElement.classList.add(config.inactiveButtonClass);
   } else {
