@@ -100,11 +100,17 @@ initialCards.forEach((card) => {
 //>>Open Modal//
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscape);
 }
 
 profileEditButton.addEventListener("click", function () {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
+  resetValidation(
+    editFormElement,
+    [editModalNameInput, editModalDescriptionInput],
+    settings
+  );
   openModal(editModal);
 });
 
@@ -112,16 +118,10 @@ newPostButton.addEventListener("click", function () {
   openModal(newPostModal);
 });
 
-//I have tried every code out there to close the modal on excape key and click overlay for UX improvement, and so far none work
-// because he div files are connected to the overlay and modal container simultaneously via .modal For these improvements to work
-// the entire modal would need to have been set up under the "dialog method" that is not what we were asked to do. the dialog method uses js modals.
-//modal.classList.add("open");
-//document.addEventListener("keydown", handleEscClose);
-//modal.addEventListener("click", handleOverlayClose);
-
 // Close Modal
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscape);
 }
 
 editModalCloseButton.addEventListener("click", function () {
@@ -136,12 +136,12 @@ previewModalCloseButton.addEventListener("click", function () {
   closeModal(previewModal);
 });
 
-//See commnt above - Same situation//
-//modals.forEach((editModal, newPostModal, previewModal) => {
-// modal.classList.remove("open");
-//document.removeEventListener("keydown", handleEscClose);
-// modal.removeEventListener("click", handleOverlayClose);
-//});
+function handleEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
+  }
+}
 
 //Submit Handlers//
 editFormElement.addEventListener("submit", function (evt) {
@@ -149,6 +149,15 @@ editFormElement.addEventListener("submit", function (evt) {
   profileName.textContent = editModalNameInput.value;
   profileDescription.textContent = editModalDescriptionInput.value;
   closeModal(editModal);
+});
+
+const modals = document.querySelectorAll(".modal");
+modals.forEach((modal) => {
+  modal.addEventListener("mousedown", (evt) => {
+    if (evt.target === modal) {
+      closeModal(modal);
+    }
+  });
 });
 
 newPostFormElement.addEventListener("submit", function (evt) {
