@@ -42,11 +42,6 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-function disableButton(buttonElement, config) {
-  buttonElement.classList.add(config.inactiveButtonClass);
-  buttonElement.disabled = true;
-}
-
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList, config)) {
     buttonElement.disabled = true;
@@ -62,11 +57,6 @@ const resetValidation = (formElement, inputList, config) => {
     hideInputError(formElement, input, config);
   });
 };
-
-function disableButton(buttonElement, config) {
-  buttonElement.classList.add(config.inactiveButtonClass);
-  buttonElement.disabled = true;
-}
 
 const setEventListeners = (formElement, config) => {
   const inputList = Array.from(
