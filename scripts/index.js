@@ -47,6 +47,9 @@ const cardsList = document.querySelector(".cards__list");
 const newPostButton = document.querySelector(".profile__add-post-button");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseButton = newPostModal.querySelector(".modal__close-button");
+//update in tutor session to document search via ID instead of query Selector,
+// tried but had a ripple effect, getting better but am weak
+// in script error correction//
 const newPostFormElement = newPostModal.querySelector(".modal__form");
 const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
@@ -123,7 +126,7 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscape);
 }
-
+//Review in tutor session to update to universal close button function//
 editModalCloseButton.addEventListener("click", function () {
   closeModal(editModal);
 });
