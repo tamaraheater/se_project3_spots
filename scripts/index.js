@@ -157,7 +157,10 @@ editFormElement.addEventListener("submit", function (evt) {
 const modals = document.querySelectorAll(".modal");
 modals.forEach((modal) => {
   modal.addEventListener("mousedown", (evt) => {
-    if (evt.target === modal) {
+    if (
+      evt.target === modal ||
+      evt.target.classList.contains("modal__close-button")
+    ) {
       closeModal(modal);
     }
   });
@@ -174,6 +177,6 @@ newPostFormElement.addEventListener("submit", function (evt) {
 
   cardsList.prepend(newPost);
   evt.target.reset();
-  disableButton(newPostSubmitButton);
+  disableButton(newPostSubmitButton, settings);
   closeModal(newPostModal);
 });
