@@ -34,10 +34,10 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const editModal = document.querySelector("#edit-open-modal");
-const editFormElement = document.forms["new-post-form-modal"];
+const editFormElement = editModal.querySelector(".modal__form");
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
-const editModalNameInput = editFormElement.querySelector("#profile-name-input");
-const editModalDescriptionInput = editFormElement.querySelector(
+const editModalNameInput = editModal.querySelector("#profile-name-input");
+const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
 
@@ -47,7 +47,7 @@ const cardsList = document.querySelector(".cards__list");
 const newPostButton = document.querySelector(".profile__add-post-button");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseButton = newPostModal.querySelector(".modal__close-button");
-const newPostFormElement = document.forms["new-post-form-modal"];
+const newPostFormElement = newPostModal.querySelector(".modal__form");
 const newPostImageInput = newPostFormElement.querySelector("#card-image-input");
 const newPostCaptionInput = newPostFormElement.querySelector(
   "#card-caption-input"
