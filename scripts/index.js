@@ -34,10 +34,10 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const editModal = document.querySelector("#edit-open-modal");
-const editFormElement = editModal.querySelector(".modal__form");
+const editFormElement = document.forms["new-post-form-modal"];
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
-const editModalNameInput = editModal.querySelector("#profile-name-input");
-const editModalDescriptionInput = editModal.querySelector(
+const editModalNameInput = editFormElement.querySelector("#profile-name-input");
+const editModalDescriptionInput = editFormElement.querySelector(
   "#profile-description-input"
 );
 
@@ -47,13 +47,14 @@ const cardsList = document.querySelector(".cards__list");
 const newPostButton = document.querySelector(".profile__add-post-button");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseButton = newPostModal.querySelector(".modal__close-button");
-//update in tutor session to document search via ID instead of query Selector,
-// tried but had a ripple effect, getting better but am weak
-// in script error correction//
-const newPostFormElement = newPostModal.querySelector(".modal__form");
-const newPostImageInput = newPostModal.querySelector("#card-image-input");
-const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
-const newPostSubmitButton = newPostModal.querySelector(".modal__submit-button");
+const newPostFormElement = document.forms["new-post-form-modal"];
+const newPostImageInput = newPostFormElement.querySelector("#card-image-input");
+const newPostCaptionInput = newPostFormElement.querySelector(
+  "#card-caption-input"
+);
+const newPostSubmitButton = newPostFormElement.querySelector(
+  ".modal__submit-button"
+);
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseButton = previewModal.querySelector(
   ".modal__close-button"
@@ -126,7 +127,7 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscape);
 }
-//Review in tutor session to update to universal close button function//
+
 editModalCloseButton.addEventListener("click", function () {
   closeModal(editModal);
 });
