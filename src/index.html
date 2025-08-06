@@ -9,13 +9,12 @@
       name="keywords"
       content="social network, image-sharing, life-events"
     />
-    <link rel="stylesheet" href="src/vendor/normalize.css" />
     <title>SPOTS</title>
   </head>
   <body class="page">
     <header class="header">
       <img
-        src="./images/logo.svg"
+        src="<%=require('./images/logo.svg')%>"
         alt="SPOTS Social Network Logo"
         class="header__logo"
       />
@@ -23,7 +22,7 @@
     <main class="content">
       <section class="profile page__section">
         <img
-          src="./images/avatar.jpg"
+          src="<%=require('./images/avatar.jpg')%>"
           alt="Bessie Coleman image"
           class="profile__avatar"
         />
@@ -36,7 +35,7 @@
             class="profile__edit-button"
           >
             <img
-              src="./images/pencil.svg"
+              src="<%=require('./images/pencil.svg')%>"
               alt="Edit Profile"
               class="profile__edit-button-icon"
             />Edit Profile
@@ -48,7 +47,7 @@
           class="profile__add-post-button"
         >
           <img
-            src="./images/plus.svg"
+            src="<%=require('./images/plus.svg')%>"
             alt="Add A Post"
             class="profile__add-post-button-icon"
           />New Post

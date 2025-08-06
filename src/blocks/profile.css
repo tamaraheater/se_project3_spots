@@ -1,6 +1,6 @@
 .profile {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
   padding: 34px 0 20px;
@@ -18,7 +18,7 @@
 .profile__column {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   max-width: 420px;
   height: 190px;
 }

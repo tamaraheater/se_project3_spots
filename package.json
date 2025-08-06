@@ -1,9 +1,10 @@
 {
   "name": "se_project3_spots",
   "version": "0.1.0",
-  "description": "### Overview",
+  "description": "- Intro - Figma - Images",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
     "dev": "webpack serve --mode development"
   },
