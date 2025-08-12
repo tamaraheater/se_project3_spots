@@ -1,5 +1,5 @@
-import "./index.css";
-import Api from "../scripts/Api.js";
+import "../pages/index.css";
+import Api from "../utils/Api.js";
 import {
   enableValidation,
   validationConfig,
@@ -45,15 +45,12 @@ const api = new Api({
   },
 });
 
-api.getInitialCards().then;
-{
-  (cards) => {
-    console.log("");
-    initialCards.forEach((card) => {
-      cardsList.append(getCardElement(card));
-    });
-  };
-}
+api.getInitialCards().then((cards) => {
+  const cardElement = getCardElement;
+  cards.forEach((item) => {
+    cardsList.append(getCardElement(item));
+  });
+});
 
 // Profile Variables//
 const profileEditButton = document.querySelector(".profile__edit-button");
