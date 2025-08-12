@@ -45,12 +45,15 @@ const api = new Api({
   },
 });
 
-api.getInitialCards().then((cards) => {
-  const cardElement = getCardElement;
-  cards.forEach((item) => {
-    cardsList.append(getCardElement(item));
-  });
-});
+api
+  .getAppInfo()
+  .then(([cards]) => {
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardsList.append(cardElement);
+    });
+  })
+  .catch(console.error);
 
 // Profile Variables//
 const profileEditButton = document.querySelector(".profile__edit-button");
