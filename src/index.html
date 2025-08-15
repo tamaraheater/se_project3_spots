@@ -21,7 +21,15 @@
     </header>
     <main class="content">
       <section class="profile page__section">
-        <img
+        <button
+         aria-label="Edit Avatar"
+         type="submit"
+         class="profile-edit-avatar-button">
+          <img
+
+        </button>
+
+          <img
           src="<%=require('./images/avatar.jpg')%>"
           alt="Bessie Coleman image"
           class="profile__avatar"
@@ -32,14 +40,13 @@
           <button
             aria-label="Edit Profile"
             type="button"
-            class="profile__edit-button"
+            class="profile__edit-button"></button>
           >
             <img
               src="<%=require('./images/pencil.svg')%>"
               alt="Edit Profile"
               class="profile__edit-button-icon"
-            />Edit Profile
-          </button>
+            />Edit Profile</button>
         </div>
         <button
           aria-label="Add New Post"
