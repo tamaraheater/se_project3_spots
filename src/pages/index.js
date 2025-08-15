@@ -5,7 +5,6 @@ import {
   validationConfig,
   resetValidation,
 } from "../scripts/validation.js";
-import { data } from "autoprefixer";
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -15,27 +14,30 @@ const api = new Api({
   },
 });
 
-//destructure the second item in the callback of the .then()
-api
-  .getAppInfo()
-  .then(([cards, userData]) => {
-    cards.forEach((item) => {
-      const cardElement = getCardElement(item);
-      cardsList.append(cardElement);
-    });
-
-    profileName.textContent = userData.name;
-    profileDescription.textContent = userData.about;
-    profileAvatar.src = userData.avatar;
-  })
-  .catch((err) => {
-    console.error("Failed to load app data:", err);
+api.getAppInfo().then(([cards, data]) => {
+  cards.forEach((item) => {
+    const cardElement = getCardElement(item);
+    cardsList.append(cardElement);
   });
+
+  profileName.textContent = data.name;
+  profileDescription.textContent = data.about;
+  //profileAvatar.src = avatar; //?? why undefined does not make sense???//
+});
+//straighten out avatar crap and add a catch//
 
 // Profile Variables//
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
+const profileAvatar = document.querySelector("#profile-avatar");
+const avatarEditButton = document.querySelector(".profile__avatar-button");
+
+// Card Variables//
+const cardTemplate = document.querySelector("#card-template");
+const cardsList = document.querySelector(".cards__list");
+
+//Edit Modal Variables
 const editModal = document.querySelector("#edit-open-modal");
 const editFormElement = editModal.querySelector(".modal__form");
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
@@ -44,9 +46,7 @@ const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
 
-// Card Variables//
-const cardTemplate = document.querySelector("#card-template");
-const cardsList = document.querySelector(".cards__list");
+//New Post Variables
 const newPostButton = document.querySelector(".profile__add-post-button");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseButton = newPostModal.querySelector(".modal__close-button");
@@ -58,6 +58,8 @@ const newPostCaptionInput = newPostFormElement.querySelector(
 const newPostSubmitButton = newPostFormElement.querySelector(
   ".modal__submit-button"
 );
+
+//Preview Mode Variables
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseButton = previewModal.querySelector(
   ".modal__close-button"
@@ -149,14 +151,14 @@ function handleEscape(evt) {
 //Submit Handlers//
 editFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  const userData = {
+  const data = {
     name: editModalNameInput.value,
     about: editModalDescriptionInput.value,
   };
   api
-    .editUserInfo(userData)
+    .editUserInfo(data)
     .then((data) => {
-      profileName.textContent = data.name; // Adjust based on API response
+      profileName.textContent = data.name;
       profileDescription.textContent = data.about;
       closeModal(editModal);
     })

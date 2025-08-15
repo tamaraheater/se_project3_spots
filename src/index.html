@@ -21,18 +21,24 @@
     </header>
     <main class="content">
       <section class="profile page__section">
-        <button
-         aria-label="Edit Avatar"
-         type="submit"
-         class="profile-edit-avatar-button">
-          <img
-
-        </button>
-
-          <img
+        <div class="profile__avatar-container">
+          <button
+            class="profile__avatar-button"
+            aria-label="Edit Avatar"
+            type="button"
+          >
+            <img
+              src="<%=require(`./images/avatar-edit-icon.jpg`)%>"
+              alt="Edit Avatar"
+              class="profile__avitar-edit-button-icon"
+            />
+          </button>
+        </div>
+        <img
           src="<%=require('./images/avatar.jpg')%>"
           alt="Bessie Coleman image"
           class="profile__avatar"
+          id="profile-avatar"
         />
         <div class="profile__column">
           <h1 class="profile__name">Bessie Coleman</h1>
@@ -40,13 +46,14 @@
           <button
             aria-label="Edit Profile"
             type="button"
-            class="profile__edit-button"></button>
+            class="profile__edit-button"
           >
             <img
               src="<%=require('./images/pencil.svg')%>"
               alt="Edit Profile"
               class="profile__edit-button-icon"
-            />Edit Profile</button>
+            />Edit Profile
+          </button>
         </div>
         <button
           aria-label="Add New Post"
