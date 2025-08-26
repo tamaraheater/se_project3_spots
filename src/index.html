@@ -28,19 +28,19 @@
             type="button"
           >
             <img
-              src="<%=require(`./images/avatar-edit-icon.jpg`)%>"
+              src="<%=require(`./images/avatar-edit-icon.svg`)%>"
               alt="Edit Avatar Icon"
               class="profile__avatar-edit-button-icon"
               id="white-pencil"
             />
           </button>
+          <img
+            src="<%=require('./images/avatar.jpg')%>"
+            alt="Bessie Coleman image"
+            class="profile__avatar"
+            id="profile-avatar"
+          />
         </div>
-        <img
-          src="<%=require('./images/avatar.jpg')%>"
-          alt="Bessie Coleman image"
-          class="profile__avatar"
-          id="profile-avatar"
-        />
         <div class="profile__column">
           <h1 class="profile__name">Bessie Coleman</h1>
           <p class="profile__description">Civil Aviator</p>
@@ -187,6 +187,33 @@
           ></button>
           <img src="#" alt="" class="modal__preview-image" />
           <p class="modal__preview-caption">""</p>
+        </div>
+      </div>
+      <div class="modal" id="avatar-open-modal">
+        <div class="modal__container">
+          <button
+            aria-label="Close Button"
+            type="button"
+            class="modal__close-button"
+          ></button>
+          <h2 class="modal__title">Edit Avatar</h2>
+          <form class="modal__form" id="edit-avitar-form-modal" novalidate>
+            <label for="profile-avatar-input" class="modal__label"
+              >Avatar
+              <input
+                id="profile-avatar-input"
+                required
+                type="text"
+                class="modal__input"
+                placeholder="Add Image Here"
+              />
+              <span
+                id="profile-avatar-input-error-msg"
+                class="modal__error_visible"
+              ></span>
+            </label>
+            <button type="submit" class="modal__submit-button">Save</button>
+          </form>
         </div>
       </div>
     </main>

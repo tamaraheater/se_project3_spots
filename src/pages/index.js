@@ -22,7 +22,7 @@ api.getAppInfo().then(([cards, data]) => {
 
   profileName.textContent = data.name;
   profileDescription.textContent = data.about;
-  //profileAvatar.src = avatar; //?? why undefined does not make sense???//
+  profileAvatar.src = data.avatar;
 });
 //straighten out avatar crap and add a catch//
 
@@ -56,6 +56,17 @@ const newPostCaptionInput = newPostFormElement.querySelector(
   "#card-caption-input"
 );
 const newPostSubmitButton = newPostFormElement.querySelector(
+  ".modal__submit-button"
+);
+
+//Avatar Modal Variables
+const avatarModal = document.querySelector("#avatar-open-modal");
+const avatarFormElement = avatarModal.querySelector(".modal__form");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
+const avatarModalCloseButton = avatarModal.querySelector(
+  ".modal__close-button"
+);
+const avatarSubmitButton = avatarFormElement.querySelector(
   ".modal__submit-button"
 );
 
@@ -121,6 +132,10 @@ profileEditButton.addEventListener("click", function () {
 
 newPostButton.addEventListener("click", function () {
   openModal(newPostModal);
+});
+
+avatarEditButton.addEventListener("click", function () {
+  openModal(avatarModal);
 });
 
 // Close Modal

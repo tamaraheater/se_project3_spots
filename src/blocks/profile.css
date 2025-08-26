@@ -6,6 +6,37 @@
   padding: 34px 0 20px;
 }
 
+.profile__avatar-button-container {
+  position: relative;
+  transition: opacity 3s, linear 1s;
+}
+
+.profile__avatar-button {
+  border-radius: 8px;
+  border-color: transparent;
+  background-color: rgba(21, 21, 21, 0.3);
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  visibility: hidden;
+}
+
+.profile__avatar-button-container:hover .profile__avatar-button {
+  visibility: visible;
+  opacity: 1;
+}
+
+.profile__avatar-button::after {
+  content: "Edit Avatar";
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 .profile__avatar {
   margin: 0;
   width: 190px;
@@ -30,10 +61,6 @@
   font-size: 32px;
   line-height: 1;
   line-clamp: 3;
-  /* There seems to be an arbitary disagreement between MDN and BigTech Google Dev Inspector over the legitimacy of the line-clamp porperty below to which I
-   do not have the power to settle. However, from my perspective WITHOUT the property it creates a KNOWN error in this CSS with MDN and prettier also agrees
-   and marks the error. Therefor my submission would be auto-rejected.  With the property in, it creates an error in the developer inspector, however they have finally
-   included the definition, instead of "unknown" which in my view is an admission that it is valid! I am leaving it in with this comment*/
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -49,10 +76,6 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
-  /* There seems to be an arbitary disagreement between MDN and BigTech Google Dev Inspector over the legitimacy of the line-clamp porperty below to which I
-   do not have the power to settle. However, from my perspective WITHOUT the property it it creates a KNOWN error in this CSS with MDN and prettier also agrees
-   and marks the error. Therefor my submission would be auto-rejected.  With the property in, it creates an error in the developer inspector, however Google has finally
-   included the definition, instead of "unknown", which in my view is an admission that it is valid! I am leaving it in, with this comment*/
   line-clamp: 3;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -127,6 +150,24 @@
     text-align: center;
     padding-top: 20px;
     margin: auto;
+  }
+
+  .profile__avatar-button-container {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: right;
+  }
+
+  .profile__avatar-button-container .profile__avatar-button {
+    position: absolute;
+    visibility: visible;
+    width: 20px;
+    height: 20px;
+  }
+
+  .profile__avatar-button::after {
+    content: " ";
   }
 
   .profile__avatar {
