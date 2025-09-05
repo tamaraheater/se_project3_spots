@@ -15,22 +15,6 @@ const api = new Api({
   },
 });
 
-api
-  .getAppInfo()
-  .then(([cards, data]) => {
-    cards.forEach((item) => {
-      const cardElement = getCardElement(item);
-      cardsList.append(cardElement);
-    });
-
-    profileName.textContent = data.name;
-    profileDescription.textContent = data.about;
-    profileAvatar.src = data.avatar;
-  })
-  .catch((err) => {
-    console.error("Failed to update user info:", err);
-  });
-
 // Card Variables//
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
@@ -90,6 +74,37 @@ const modalPreviewCaptionEl = previewModal.querySelector(
   ".modal__preview-caption"
 );
 
+api
+  .getAppInfo()
+  .then(([cards, data]) => {
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardsList.append(cardElement);
+    });
+
+    profileName.textContent = data.name;
+    profileDescription.textContent = data.about;
+    profileAvatar.src = data.avatar;
+  })
+  .catch((err) => {
+    console.error("Failed to update user info:", err);
+  });
+
+function handleLike(evt, id) {
+  const cardLikeButtonEl = evt.target;
+  const cardIsLiked = cardLikeButtonEl.classList.contains(
+    "card__like-button_active"
+  );
+  api
+    .changeLikeStatus(id, cardIsLiked)
+    .then((updatedCard) => {
+      cardLikeButtonEl.classList.toggle("card__like-button_active");
+    })
+    .catch((err) => {
+      console.error("Failed to toggle like:", err);
+    });
+}
+
 //Card Element Functions//
 function getCardElement(data) {
   const cardElement = cardTemplate.content
@@ -104,10 +119,9 @@ function getCardElement(data) {
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
 
-  cardLikeButtonEl.addEventListener("click", () => {
-    cardLikeButtonEl.classList.toggle("card__like-button_active");
-  });
-
+  cardLikeButtonEl.addEventListener("click", (evt) =>
+    handleLike(evt, data._id)
+  );
   cardDeleteButtonEl.addEventListener("click", () => {
     selectedCardID = data._id;
     selectedCard = cardElement;
@@ -194,14 +208,17 @@ modals.forEach((modal) => {
 
 avatarFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
-
   const submitButton = avatarFormElement.querySelector(".modal__submit-button");
+  submitButton.textContent = "Saving...";
   const avatarData = { avatar: avatarInput.value };
   api
     .updateAvatar(avatarData)
     .then((data) => {
       profileAvatar.src = data.avatar;
       closeModal(avatarModal);
+    })
+    .catch((err) => {
+      console.error("Failed to update avatar:", err);
     })
     .finally(() => {
       submitButton.textContent = "Save";
@@ -212,25 +229,33 @@ avatarFormElement.addEventListener("submit", function (evt) {
 
 editFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  const data = {
+  const submitButton = editFormElement.querySelector(".modal__submit-button");
+  submitButton.textContent = "Saving...";
+  const userData = {
     name: editModalNameInput.value,
     about: editModalDescriptionInput.value,
   };
   api
-    .editUserInfo(data)
+    .editUserInfo(userData)
     .then((data) => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
       closeModal(editModal);
     })
     .catch((err) => {
-      console.error("API error in editUserInfo:", err);
-      throw err;
+      console.error("Failed to update user info:", err);
+    })
+    .finally(() => {
+      submitButton.textContent = "Save";
     });
 });
 
 newPostFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
+  const submitButton = newPostFormElement.querySelector(
+    ".modal__submit-button"
+  );
+  submitButton.textContent = "Saving...";
 
   const name = newPostCaptionInput.value;
   const link = newPostImageInput.value;
@@ -245,14 +270,18 @@ newPostFormElement.addEventListener("submit", function (evt) {
     })
     .catch((err) => {
       console.error("Failed to addCard:", err);
+    })
+    .finally(() => {
+      submitButton.textContent = "Save";
     });
-
   evt.target.reset();
   disableButton(newPostSubmitButton, validationConfig);
 });
 
 deleteFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
+  const submitButton = deleteFormElement.querySelector(".modal__submit-button");
+  submitButton.textContent = "Deleting...";
   api
     .deleteCard(selectedCardID)
     .then(() => {
@@ -262,6 +291,9 @@ deleteFormElement.addEventListener("submit", function (evt) {
     .catch((err) => {
       console.error("API error in deleteCard:", err);
       throw err;
+    })
+    .finally(() => {
+      submitButton.textContent = "Delete";
     });
 });
 

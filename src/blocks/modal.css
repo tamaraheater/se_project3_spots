@@ -134,6 +134,70 @@
   cursor: pointer;
 }
 
+.modal__form-delete {
+  display: flex;
+  justify-content: space between;
+  flex-direction: row;
+  width: 630px;
+  padding: 32px 20px;
+  gap: 32px;
+}
+
+.modal__form-delete .modal__title {
+  width: 590px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+  margin: 0;
+}
+
+#delete-modal .modal__close-button {
+  top: -40px;
+  right: -40px;
+  width: 40px;
+}
+
+.modal__form-delete .modal__submit-button {
+  width: 156px;
+  background-color: #ff6565;
+  color: #212121;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.2;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 18px 32px;
+  transition: 0.3s, linear;
+  gap: 8px;
+}
+
+.modal__form-delete:hover .modal__submit-button {
+  background-color: #ff3333;
+  opacity: 1;
+}
+
+.modal__cancel-button {
+  width: 156px;
+  border-width: 1px;
+  border-color: #212121;
+  border-radius: 8px;
+  background-color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1;
+  color: #212121;
+  padding: 18px 32px;
+  cursor: pointer;
+}
+
+.modal__cancel-button:hover {
+  border: none;
+  background-color: #212121;
+  color: #fff;
+}
+
 .modal__submit-button_disabled {
   opacity: 0.5;
   cursor: not-allowed;
