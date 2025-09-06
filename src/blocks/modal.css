@@ -135,16 +135,17 @@
 }
 
 .modal__form-delete {
+  position: relative;
   display: flex;
-  justify-content: space between;
+  justify-content: center;
   flex-direction: row;
   width: 630px;
   padding: 32px 20px;
   gap: 32px;
 }
 
-.modal__form-delete .modal__title {
-  width: 590px;
+#delete-modal .modal__title {
+  width: 620px;
   font-weight: 500;
   font-size: 24px;
   line-height: 1;
@@ -153,9 +154,14 @@
 }
 
 #delete-modal .modal__close-button {
-  top: -40px;
-  right: -40px;
+  top: -10px;
+  right: -50px;
   width: 40px;
+  height: 40px;
+  color: #fff;
+  border-color: white;
+  border-width: 2px;
+  background-color: transparent;
 }
 
 .modal__form-delete .modal__submit-button {
