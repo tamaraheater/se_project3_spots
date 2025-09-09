@@ -18,9 +18,10 @@ const api = new Api({
 // Card Variables//
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
-//Delete Card
+//Delete Modal
 const deleteModal = document.querySelector("#delete-modal");
 const deleteFormElement = deleteModal.querySelector(".modal__form");
+const cancelDeleteButton = deleteModal.querySelector(".modal__cancel-button");
 
 let selectedCard, selectedCardID;
 
@@ -184,6 +185,10 @@ previewModalCloseButton.addEventListener("click", function () {
 
 avatarModalCloseButton.addEventListener("click", function () {
   closeModal(avatarModal);
+});
+
+cancelDeleteButton.addEventListener("click", function () {
+  closeModal(deleteModal);
 });
 
 function handleEscape(evt) {

@@ -134,34 +134,42 @@
   cursor: pointer;
 }
 
+#delete-modal .modal__container {
+  display: flex;
+  flex-direction: column;
+  width: 630px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 32px;
+}
+
 .modal__form-delete {
-  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: row;
-  width: 630px;
-  padding: 32px 20px;
-  gap: 32px;
+  width: 100%;
+  margin: 0;
+  gap: 20px;
 }
 
 #delete-modal .modal__title {
-  width: 620px;
+  width: 590px;
   font-weight: 500;
   font-size: 24px;
   line-height: 1;
   text-align: center;
-  margin: 0;
+  margin: 0 0 32px;
+  gap: 32px;
 }
 
 #delete-modal .modal__close-button {
+  background-image: url(../images/Close2Icon.svg);
   top: -10px;
   right: -50px;
   width: 40px;
   height: 40px;
-  color: #fff;
-  border-color: white;
-  border-width: 2px;
   background-color: transparent;
+  opacity: 1;
 }
 
 .modal__form-delete .modal__submit-button {
@@ -173,6 +181,7 @@
   line-height: 1.2;
   border: none;
   border-radius: 8px;
+  gap: 20px;
   cursor: pointer;
   padding: 18px 32px;
   transition: 0.3s, linear;
@@ -244,7 +253,36 @@
   }
 
   .modal__container {
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 12px;
+    border-radius: 8px;
+    gap: 20px;
+  }
+
+  .modal__form-delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  #delete-modal .modal__title {
+    max-width: 236px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    text-align: center;
+    margin: 0 0 20px;
+  }
+
+  #delete-modal .modal__close-button {
+    width: 40px;
+    height: 40px;
+    top: -40px;
+    right: 0;
   }
 
   .modal__title {

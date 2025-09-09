@@ -8,7 +8,7 @@
 
 .profile__avatar-button-container {
   position: relative;
-  transition: opacity 3s, linear 1s;
+  transition: opacity 0.3s ease;
 }
 
 .profile__avatar-button {
@@ -23,6 +23,7 @@
   justify-content: center;
   gap: 8px;
   visibility: hidden;
+  box-shadow: none;
 }
 
 .profile__avatar-button-container:hover .profile__avatar-button {
