@@ -77,18 +77,17 @@ const modalPreviewCaptionEl = previewModal.querySelector(
 
 api
   .getAppInfo()
-  .then(([cards, data]) => {
-    cards.forEach((item) => {
-      const cardElement = getCardElement(item);
+  .then(([cards, user]) => {
+    cards.forEach((card) => {
+      const cardElement = getCardElement(card);
       cardsList.append(cardElement);
     });
-
-    profileName.textContent = data.name;
-    profileDescription.textContent = data.about;
-    profileAvatar.src = data.avatar;
+    profileName.textContent = user.name;
+    profileDescription.textContent = user.about;
+    profileAvatar.src = user.avatar;
   })
   .catch((err) => {
-    console.error("Failed to update user info:", err);
+    console.error("Failed to load app info:", err);
   });
 
 function handleLike(evt, id) {
@@ -96,10 +95,14 @@ function handleLike(evt, id) {
   const cardIsLiked = cardLikeButtonEl.classList.contains(
     "card__like-button_active"
   );
+
   api
     .changeLikeStatus(id, cardIsLiked)
     .then((updatedCard) => {
-      cardLikeButtonEl.classList.toggle("card__like-button_active");
+      cardLikeButtonEl.classList.toggle(
+        "card__like-button_active",
+        updatedCard.isLiked
+      );
     })
     .catch((err) => {
       console.error("Failed to toggle like:", err);
@@ -107,6 +110,7 @@ function handleLike(evt, id) {
 }
 
 //Card Element Functions//
+// Updated getCardElement
 function getCardElement(data) {
   const cardElement = cardTemplate.content
     .querySelector(".card")
@@ -119,6 +123,10 @@ function getCardElement(data) {
   cardNameElement.textContent = data.name;
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
+
+  if (data.isLiked) {
+    cardLikeButtonEl.classList.add("card__like-button_active");
+  }
 
   cardLikeButtonEl.addEventListener("click", (evt) =>
     handleLike(evt, data._id)
@@ -216,21 +224,22 @@ avatarFormElement.addEventListener("submit", function (evt) {
   const submitButton = avatarFormElement.querySelector(".modal__submit-button");
   submitButton.textContent = "Saving...";
   const avatarData = { avatar: avatarInput.value };
+
   api
     .updateAvatar(avatarData)
     .then((data) => {
       profileAvatar.src = data.avatar;
       closeModal(avatarModal);
+      evt.target.reset();
     })
     .catch((err) => {
       console.error("Failed to update avatar:", err);
     })
     .finally(() => {
       submitButton.textContent = "Save";
+      submitButton.disabled = true;
     });
 });
-
-//Event Listener - API data return
 
 editFormElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
@@ -264,7 +273,7 @@ newPostFormElement.addEventListener("submit", function (evt) {
 
   const name = newPostCaptionInput.value;
   const link = newPostImageInput.value;
-  const newPostData = { name: name, link: link };
+  const newPostData = { name, link };
 
   api
     .addCard(newPostData)
@@ -272,15 +281,77 @@ newPostFormElement.addEventListener("submit", function (evt) {
       const cardElement = getCardElement(newPost);
       cardsList.prepend(cardElement);
       closeModal(newPostModal);
+      evt.target.reset();
+      resetValidation(
+        newPostFormElement,
+        [newPostImageInput, newPostCaptionInput],
+        validationConfig
+      );
+      disableButton(newPostSubmitButton, validationConfig);
     })
     .catch((err) => {
       console.error("Failed to addCard:", err);
+      alert("Failed to create post. Please try again.");
     })
     .finally(() => {
       submitButton.textContent = "Save";
     });
-  evt.target.reset();
-  disableButton(newPostSubmitButton, validationConfig);
+});
+
+avatarFormElement.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  const submitButton = avatarFormElement.querySelector(".modal__submit-button");
+  submitButton.textContent = "Saving...";
+  const avatarData = { avatar: avatarInput.value };
+
+  api
+    .updateAvatar(avatarData)
+    .then((data) => {
+      profileAvatar.src = data.avatar;
+      closeModal(avatarModal);
+      evt.target.reset();
+      resetValidation(avatarFormElement, [avatarInput], validationConfig);
+      disableButton(submitButton, validationConfig);
+    })
+
+    .catch((err) => {
+      console.error("Failed to update avatar:", err);
+      alert("Failed to update avatar. Please try again.");
+    });
+});
+
+newPostFormElement.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  const submitButton = newPostFormElement.querySelector(
+    ".modal__submit-button"
+  );
+  submitButton.textContent = "Saving...";
+
+  const name = newPostCaptionInput.value;
+  const link = newPostImageInput.value;
+  const newPostData = { name, link };
+
+  api
+    .addCard(newPostData)
+    .then((newPost) => {
+      const cardElement = getCardElement(newPost);
+      cardsList.prepend(cardElement);
+      closeModal(newPostModal);
+      evt.target.reset();
+      resetValidation(
+        newPostFormElement,
+        [newPostImageInput, newPostCaptionInput],
+        validationConfig
+      );
+      disableButton(newPostSubmitButton, validationConfig);
+    })
+    .catch((err) => {
+      console.error("Failed to addCard:", err);
+      alert("Failed to create post. Please try again.");
+    })
+    .finally(() => {
+      submitButton.textContent = "Save";
+    });
 });
 
 deleteFormElement.addEventListener("submit", function (evt) {
