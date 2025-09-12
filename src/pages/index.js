@@ -15,6 +15,8 @@ const api = new Api({
   },
 });
 
+let selectedCard, selectedCardID;
+
 // Card Variables//
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
@@ -22,8 +24,6 @@ const cardsList = document.querySelector(".cards__list");
 const deleteModal = document.querySelector("#delete-modal");
 const deleteFormElement = deleteModal.querySelector(".modal__form");
 const cancelDeleteButton = deleteModal.querySelector(".modal__cancel-button");
-
-let selectedCard, selectedCardID;
 
 // Profile Variables//
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -77,17 +77,18 @@ const modalPreviewCaptionEl = previewModal.querySelector(
 
 api
   .getAppInfo()
-  .then(([cards, user]) => {
-    cards.forEach((card) => {
-      const cardElement = getCardElement(card);
+  .then(([cards, data]) => {
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
       cardsList.append(cardElement);
     });
-    profileName.textContent = user.name;
-    profileDescription.textContent = user.about;
-    profileAvatar.src = user.avatar;
+
+    profileName.textContent = data.name;
+    profileDescription.textContent = data.about;
+    profileAvatar.src = data.avatar;
   })
   .catch((err) => {
-    console.error("Failed to load app info:", err);
+    console.error("Failed to update user info:", err);
   });
 
 // Handle like button clicks
@@ -242,17 +243,20 @@ avatarFormElement.addEventListener("submit", function (evt) {
   const submitButton = avatarFormElement.querySelector(".modal__submit-button");
   submitButton.textContent = "Saving...";
   const avatarData = { avatar: avatarInput.value };
+
   api
     .updateAvatar(avatarData)
     .then((data) => {
       profileAvatar.src = data.avatar;
       closeModal(avatarModal);
+      evt.target.reset();
     })
     .catch((err) => {
       console.error("Failed to update avatar:", err);
     })
     .finally(() => {
       submitButton.textContent = "Save";
+      submitButton.disabled = true;
     });
 });
 
@@ -288,7 +292,63 @@ newPostFormElement.addEventListener("submit", function (evt) {
 
   const name = newPostCaptionInput.value;
   const link = newPostImageInput.value;
-  const newPostData = { name: name, link: link };
+  const newPostData = { name, link };
+
+  api
+    .addCard(newPostData)
+    .then((newPost) => {
+      const cardElement = getCardElement(newPost);
+      cardsList.prepend(cardElement);
+      closeModal(newPostModal);
+      evt.target.reset();
+      resetValidation(
+        newPostFormElement,
+        [newPostImageInput, newPostCaptionInput],
+        validationConfig
+      );
+      disableButton(newPostSubmitButton, validationConfig);
+    })
+    .catch((err) => {
+      console.error("Failed to addCard:", err);
+      alert("Failed to create post. Please try again.");
+    })
+    .finally(() => {
+      submitButton.textContent = "Save";
+    });
+});
+
+avatarFormElement.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  const submitButton = avatarFormElement.querySelector(".modal__submit-button");
+  submitButton.textContent = "Saving...";
+  const avatarData = { avatar: avatarInput.value };
+
+  api
+    .updateAvatar(avatarData)
+    .then((data) => {
+      profileAvatar.src = data.avatar;
+      closeModal(avatarModal);
+      evt.target.reset();
+      resetValidation(avatarFormElement, [avatarInput], validationConfig);
+      disableButton(submitButton, validationConfig);
+    })
+
+    .catch((err) => {
+      console.error("Failed to update avatar:", err);
+      alert("Failed to update avatar. Please try again.");
+    });
+});
+
+newPostFormElement.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  const submitButton = newPostFormElement.querySelector(
+    ".modal__submit-button"
+  );
+  submitButton.textContent = "Saving...";
+
+  const name = newPostCaptionInput.value;
+  const link = newPostImageInput.value;
+  const newPostData = { name, link };
 
   api
     .addCard(newPostData)
