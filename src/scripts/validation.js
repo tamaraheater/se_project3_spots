@@ -44,7 +44,6 @@ const hasInvalidInput = (inputList) => {
 
 export const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
-    // Fixed: Removed config parameter
     disableButton(buttonElement, config);
   } else {
     buttonElement.disabled = false;
