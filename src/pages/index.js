@@ -1,5 +1,6 @@
 import "../pages/index.css";
 import Api from "../utils/Api.js";
+import { renderLoading } from "../utils/helpers.js";
 import {
   enableValidation,
   validationConfig,
@@ -65,6 +66,40 @@ const modalPreviewImageEl = previewModal.querySelector(".modal__preview-image");
 const modalPreviewCaptionEl = previewModal.querySelector(
   ".modal__preview-caption"
 );
+
+function handleSubmit(request, evt, loadingText = "Saving...") {
+  evt.preventDefault();
+  const submitButton = evt.submitter;
+  const initialText = submitButton.textContent;
+  renderLoading(true, submitButton, initialText, loadingText);
+  request()
+    .then(() => {
+      evt.target.reset();
+    })
+    .catch((err) => {
+      console.error("Form submission failed:", err);
+      alert("Failed to save. Please try again."); // User-facing error
+    })
+    .finally(() => {
+      renderLoading(false, submitButton, initialText);
+    });
+}
+
+// Initialize App
+api
+  .getAppInfo()
+  .then(([cards, data]) => {
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardsList.append(cardElement);
+    });
+    profileName.textContent = data.name;
+    profileDescription.textContent = data.about;
+    profileAvatar.src = data.avatar;
+  })
+  .catch((err) => {
+    console.error("Failed to fetch app info:", err);
+  });
 
 // Modal Functions
 function openModal(modal) {
@@ -297,19 +332,3 @@ modals.forEach((modal) => {
 
 // Validation
 enableValidation(validationConfig);
-
-// Initialize App
-api
-  .getAppInfo()
-  .then(([cards, data]) => {
-    cards.forEach((item) => {
-      const cardElement = getCardElement(item);
-      cardsList.append(cardElement);
-    });
-    profileName.textContent = data.name;
-    profileDescription.textContent = data.about;
-    profileAvatar.src = data.avatar;
-  })
-  .catch((err) => {
-    console.error("Failed to fetch app info:", err);
-  });
