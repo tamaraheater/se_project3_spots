@@ -225,7 +225,7 @@ cancelDeleteButton.addEventListener("click", () => {
   closeModal(deleteModal);
 });
 
-// Submit Handlers
+// Close Modal
 const modals = document.querySelectorAll(".modal");
 modals.forEach((modal) => {
   modal.addEventListener("mousedown", (evt) => {
@@ -239,24 +239,8 @@ modals.forEach((modal) => {
 });
 
 // Form Functions
-function handleProfileFormSubmit(evt) {
-  function makeRequest() {
-    return api
-      .editUserInfo({
-        name: editModalNameInput.value,
-        about: editModalDescriptionInput.value,
-      })
-      .then((userData) => {
-        profileName.textContent = userData.name;
-        profileDescription.textContent = userData.about;
-        closeModal(editModal);
-        return userData;
-      });
-  }
-  handleSubmit(makeRequest, evt);
-}
-
 function handleNewPostFormSubmit(evt) {
+  console.log("handleNewPostFormSubmit called");
   function makeRequest() {
     return api
       .addCard({
@@ -273,18 +257,42 @@ function handleNewPostFormSubmit(evt) {
   handleSubmit(makeRequest, evt);
 }
 
-function handleAvatarFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
+  console.log("handleProfileFormSubmit called");
   function makeRequest() {
-    return api.updateAvatar({ avatar: avatarInput.value }).then((data) => {
-      profileAvatar.src = data.avatar;
-      closeModal(avatarModal);
-      return data;
-    });
+    return api
+      .editUserInfo({
+        name: editModalNameInput.value,
+        about: editModalDescriptionInput.value,
+      })
+      .then((userData) => {
+        profileName.textContent = userData.name;
+        profileDescription.textContent = userData.about;
+        closeModal(editModal);
+        return userData;
+      });
+  }
+  handleSubmit(makeRequest, evt);
+}
+
+function handleAvatarFormSubmit(evt) {
+  console.log("handleAvatarFormSubmit called");
+  function makeRequest() {
+    return api
+      .updateAvatar({
+        avatar: avatarInput.value,
+      })
+      .then((data) => {
+        profileAvatar.src = data.avatar;
+        closeModal(avatarModal);
+        return data;
+      });
   }
   handleSubmit(makeRequest, evt);
 }
 
 function handleDeleteFormSubmit(evt) {
+  console.log("handleDeleteFormSubmit called");
   function makeRequest() {
     return api.deleteCard(selectedCardID).then(() => {
       selectedCard.remove();
@@ -294,12 +302,9 @@ function handleDeleteFormSubmit(evt) {
   handleSubmit(makeRequest, evt);
 }
 
-editFormElement.addEventListener("submit", handleProfileFormSubmit);
-
 newPostFormElement.addEventListener("submit", handleNewPostFormSubmit);
-
+editFormElement.addEventListener("submit", handleProfileFormSubmit);
 avatarFormElement.addEventListener("submit", handleAvatarFormSubmit);
-
 deleteFormElement.addEventListener("submit", handleDeleteFormSubmit);
 
 enableValidation(validationConfig);
