@@ -36,7 +36,7 @@ const checkInputValidity = (formElement, inputElement, config) => {
   }
 };
 
-const hasInvalidInput = (inputList) => {
+export const hasInvalidInput = (inputList) => {
   return inputList.some((input) => {
     return !input.validity.valid;
   });
@@ -60,6 +60,10 @@ export const resetValidation = (formElement, inputList, config) => {
   inputList.forEach((input) => {
     hideInputError(formElement, input, config);
   });
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  if (hasInvalidInput(inputList)) {
+    disableButton(buttonElement, config);
+  }
 };
 
 const setEventListeners = (formElement, config) => {
@@ -81,6 +85,15 @@ const setEventListeners = (formElement, config) => {
 export const enableValidation = (config) => {
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((formElement) => {
+    formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      const inputList = Array.from(
+        formElement.querySelectorAll(config.inputSelector)
+      );
+      if (!hasInvalidInput(inputList)) {
+        formElement.dispatchEvent(new Event("submit"));
+      }
+    });
     setEventListeners(formElement, config);
   });
 };
