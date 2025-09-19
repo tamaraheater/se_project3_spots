@@ -9,6 +9,15 @@ import {
   toggleButtonState,
 } from "../scripts/validation.js";
 
+// API Initialization
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "563217bb-cd86-459c-9285-cca63d6f8c1f",
+    "Content-Type": "application/json",
+  },
+});
+
 let selectedCard, selectedCardID;
 
 // Card Variables
