@@ -4,15 +4,15 @@ class Api {
     this._headers = headers;
   }
 
+  getAppInfo() {
+    return Promise.all([this.getCards(), this.getUserInfo()]);
+  }
+
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(`Error: ${res.status}`);
-  }
-
-  getAppInfo() {
-    return Promise.all([this.getCards(), this.getUserInfo()]);
   }
 
   getCards() {
