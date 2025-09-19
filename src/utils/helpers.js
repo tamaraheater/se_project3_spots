@@ -1,13 +1,22 @@
+import { disableButton } from "../scripts/validation";
+
 export function renderLoading(
   isLoading,
-  button,
-  buttonText = "Save",
+  buttonElement,
+  initialText = "Save",
   loadingText = "Saving..."
 ) {
+  if (!buttonElement) {
+    console.error("No button element provided to renderLoading");
+    return;
+  }
+  buttonElement.textContent = isLoading ? loadingText : initialText;
+}
+{
   if (isLoading) {
-    button.textContent = loadingText;
+    button.textContent = data - loadingText;
   } else {
-    button.textContent = buttonText;
+    button.textContent = defaultText;
   }
 }
 
@@ -18,7 +27,7 @@ export function handleSubmit(request, evt, loadingText = "Saving...") {
   renderLoading(true, submitButton, initialText, loadingText);
   request()
     .then(() => {
-      evt.target.reset();
+      evt.target.reset(disableButton);
     })
     .catch(console.error)
     .finally(() => {

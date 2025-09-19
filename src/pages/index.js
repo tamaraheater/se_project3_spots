@@ -238,6 +238,7 @@ modals.forEach((modal) => {
   });
 });
 
+// Form Functions
 function handleProfileFormSubmit(evt) {
   function makeRequest() {
     return api
