@@ -1,6 +1,6 @@
 import "../pages/index.css";
 import Api from "../utils/Api.js";
-import { renderLoading } from "../utils/helpers.js";
+import { renderLoading, handleSubmit } from "../utils/helpers.js";
 import {
   enableValidation,
   validationConfig,
@@ -66,40 +66,6 @@ const modalPreviewImageEl = previewModal.querySelector(".modal__preview-image");
 const modalPreviewCaptionEl = previewModal.querySelector(
   ".modal__preview-caption"
 );
-
-function handleSubmit(request, evt, loadingText = "Saving...") {
-  evt.preventDefault();
-  const submitButton = evt.submitter;
-  const initialText = submitButton.textContent;
-  renderLoading(true, submitButton, initialText, loadingText);
-  request()
-    .then(() => {
-      evt.target.reset();
-    })
-    .catch((err) => {
-      console.error("Form submission failed:", err);
-      alert("Failed to save. Please try again."); // User-facing error
-    })
-    .finally(() => {
-      renderLoading(false, submitButton, initialText);
-    });
-}
-
-// Initialize App
-api
-  .getAppInfo()
-  .then(([cards, data]) => {
-    cards.forEach((item) => {
-      const cardElement = getCardElement(item);
-      cardsList.append(cardElement);
-    });
-    profileName.textContent = data.name;
-    profileDescription.textContent = data.about;
-    profileAvatar.src = data.avatar;
-  })
-  .catch((err) => {
-    console.error("Failed to fetch app info:", err);
-  });
 
 // Modal Functions
 function openModal(modal) {
@@ -176,108 +142,84 @@ function handleLike(evt, id) {
 }
 
 // Form Submit Handlers
-editFormElement.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  const submitButton = editFormElement.querySelector(".modal__submit-button");
-  submitButton.textContent = "Saving...";
-  const userData = {
-    name: editModalNameInput.value,
-    about: editModalDescriptionInput.value,
-  };
-  api
-    .editUserInfo(userData)
-    .then((data) => {
-      profileName.textContent = data.name;
-      profileDescription.textContent = data.about;
-      closeModal(editModal);
-      evt.target.reset();
-      resetValidation(
-        editFormElement,
-        [editModalNameInput, editModalDescriptionInput],
-        validationConfig
-      );
-      disableButton(submitButton, validationConfig);
-    })
-    .catch((err) => {
-      console.error("Failed to update user info:", err);
-    })
-    .finally(() => {
-      submitButton.textContent = "Save";
+function handleProfileFormSubmit(evt) {
+  function makeRequest() {
+    return api
+      .editUserInfo({
+        name: editModalNameInput.value,
+        about: editModalDescriptionInput.value,
+      })
+      .then((userData) => {
+        profileName.textContent = userData.name;
+        profileDescription.textContent = userData.about;
+        return userData;
+      });
+  }
+  handleSubmit(makeRequest, evt).then(() => {
+    evt.target.reset();
+    resetValidation(evt.target, validationConfig);
+    disableButton(
+      evt.target.querySelector(".modal__submit-button"),
+      validationConfig
+    );
+    closeModal(editModal);
+  });
+}
+
+function handleNewPostFormSubmit(evt) {
+  function makeRequest() {
+    return api.createCard({
+      link: newPostImageInput.value,
+      name: newPostCaptionInput.value,
     });
+  }
+  handleSubmit(makeRequest, evt).then((card) => {
+    const cardElement = getCardElement(card);
+    cardsList.prepend(cardElement);
+    evt.target.reset();
+    resetValidation(evt.target, validationConfig);
+    disableButton(
+      evt.target.querySelector(".modal__submit-button"),
+      validationConfig
+    );
+    closeModal(newPostModal);
+  });
+}
+
+editFormElement.addEventListener("submit", (evt) => {
+  console.log("Profile form submitted");
+  handleProfileFormSubmit(evt);
 });
 
-newPostFormElement.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  const submitButton = newPostFormElement.querySelector(
-    ".modal__submit-button"
-  );
-  submitButton.textContent = "Saving...";
-
-  const name = newPostCaptionInput.value;
-  const link = newPostImageInput.value;
-  const newPostData = { name, link };
-
-  api
-    .addCard(newPostData)
-    .then((newPost) => {
-      const cardElement = getCardElement(newPost);
-      cardsList.prepend(cardElement);
-      closeModal(newPostModal);
-      evt.target.reset();
-      resetValidation(
-        newPostFormElement,
-        [newPostImageInput, newPostCaptionInput],
-        validationConfig
-      );
-      disableButton(newPostSubmitButton, validationConfig);
-    })
-    .catch((err) => {
-      console.error("Failed to add card:", err);
-    })
-    .finally(() => {
-      submitButton.textContent = "Save";
-    });
+newPostFormElement.addEventListener("submit", (evt) => {
+  console.log("New post form submitted");
+  handleNewPostFormSubmit(evt);
 });
 
 avatarFormElement.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  const submitButton = avatarFormElement.querySelector(".modal__submit-button");
-  submitButton.textContent = "Saving...";
-  const avatarData = { avatar: avatarInput.value };
-
-  api
-    .updateAvatar(avatarData)
-    .then((data) => {
-      profileAvatar.src = data.avatar;
-      closeModal(avatarModal);
-      evt.target.reset();
-      resetValidation(avatarFormElement, [avatarInput], validationConfig);
-      disableButton(submitButton, validationConfig);
-    })
-    .catch((err) => {
-      console.error("Failed to update avatar:", err);
-    })
-    .finally(() => {
-      submitButton.textContent = "Save";
-    });
+  function makeRequest() {
+    return api.updateAvatar({ avatar: avatarInput.value });
+  }
+  handleSubmit(makeRequest, evt).then((data) => {
+    profileAvatar.src = data.avatar;
+    evt.target.reset();
+    resetValidation(avatarFormElement, [avatarInput], validationConfig);
+    disableButton(
+      evt.target.querySelector(".modal__submit-button"),
+      validationConfig
+    );
+    closeModal(avatarModal);
+  });
 });
 
 deleteFormElement.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  const submitButton = deleteFormElement.querySelector(".modal__submit-button");
-  submitButton.textContent = "Deleting...";
-  api
-    .deleteCard(selectedCardID)
-    .then(() => {
-      selectedCard.remove();
-      closeModal(deleteModal);
-    })
-    .catch((err) => {
-      console.error("Failed to delete card:", err);
-    })
-    .finally(() => {
-      submitButton.textContent = "Delete";
-    });
+  function makeRequest() {
+    return api.deleteCard(selectedCardID);
+  }
+  handleSubmit(makeRequest, evt).then(() => {
+    selectedCard.remove();
+    closeModal(deleteModal);
+  });
 });
 
 // Button Event Listeners
