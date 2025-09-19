@@ -4,21 +4,23 @@ export function renderLoading(
   buttonText = "Save",
   loadingText = "Saving..."
 ) {
-  button.textContent = isLoading ? loadingText : buttonText;
+  if (isLoading) {
+    button.textContent = loadingText;
+  } else {
+    button.textContent = buttonText;
+  }
 }
 
 export function handleSubmit(request, evt, loadingText = "Saving...") {
   evt.preventDefault();
   const submitButton = evt.submitter;
   const initialText = submitButton.textContent;
-
   renderLoading(true, submitButton, initialText, loadingText);
-  return request()
-    .catch((err) => {
-      console.error("Form submission failed:", err);
-      alert("Failed to save. Please try again.");
-      throw err;
+  request()
+    .then(() => {
+      evt.target.reset();
     })
+    .catch(console.error)
     .finally(() => {
       renderLoading(false, submitButton, initialText);
     });
