@@ -1,6 +1,11 @@
+// index.js
 import "../pages/index.css";
 import Api from "../utils/Api.js";
-import { renderLoading, handleSubmit } from "../utils/helpers.js";
+import {
+  setButtonText,
+  renderLoading,
+  handleSubmit,
+} from "../utils/helpers.js";
 import {
   enableValidation,
   validationConfig,
@@ -9,11 +14,11 @@ import {
   toggleButtonState,
 } from "../scripts/validation.js";
 
-// API Initialization
+// Instantiate Api with correct Authorization header
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "563217bb-cd86-459c-9285-cca63d6f8c1f",
+    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",
   },
 });
@@ -23,10 +28,6 @@ let selectedCard, selectedCardID;
 // Card Variables
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
-// Delete Modal
-const deleteModal = document.querySelector("#delete-modal");
-const deleteFormElement = deleteModal.querySelector(".modal__form");
-const cancelDeleteButton = deleteModal.querySelector(".modal__cancel-button");
 
 // Profile Variables
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -122,7 +123,6 @@ function getCardElement(data) {
   const cardNameElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardLikeButtonEl = cardElement.querySelector(".card__like-button");
-  const cardDeleteButtonEl = cardElement.querySelector(".card__delete-button");
 
   cardNameElement.textContent = data.name;
   cardImageElement.src = data.link;
@@ -135,11 +135,6 @@ function getCardElement(data) {
   cardLikeButtonEl.addEventListener("click", (evt) =>
     handleLike(evt, data._id)
   );
-  cardDeleteButtonEl.addEventListener("click", () => {
-    selectedCardID = data._id;
-    selectedCard = cardElement;
-    openModal(deleteModal);
-  });
 
   cardImageElement.addEventListener("click", () => {
     modalPreviewImageEl.src = data.link;
@@ -221,10 +216,6 @@ avatarModalCloseButton.addEventListener("click", () => {
   closeModal(avatarModal);
 });
 
-cancelDeleteButton.addEventListener("click", () => {
-  closeModal(deleteModal);
-});
-
 // Close Modal
 const modals = document.querySelectorAll(".modal");
 modals.forEach((modal) => {
@@ -239,72 +230,131 @@ modals.forEach((modal) => {
 });
 
 // Form Functions
-function handleNewPostFormSubmit(evt) {
+function handleNewPostFormSubmit(event) {
   console.log("handleNewPostFormSubmit called");
-  function makeRequest() {
-    return api
-      .addCard({
-        name: newPostCaptionInput.value,
-        link: newPostImageInput.value,
-      })
-      .then((newPost) => {
-        const cardElement = getCardElement(newPost);
-        cardsList.prepend(cardElement);
-        closeModal(newPostModal);
-        return newPost;
-      });
-  }
-  handleSubmit(makeRequest, evt);
-}
+  event.preventDefault();
+  const form = event.target;
+  const imageInput = form.querySelector("#card-image-input").value;
+  const captionInput = form.querySelector("#card-caption-input").value;
 
-function handleProfileFormSubmit(evt) {
-  console.log("handleProfileFormSubmit called");
-  function makeRequest() {
-    return api
-      .editUserInfo({
-        name: editModalNameInput.value,
-        about: editModalDescriptionInput.value,
-      })
-      .then((userData) => {
-        profileName.textContent = userData.name;
-        profileDescription.textContent = userData.about;
-        closeModal(editModal);
-        return userData;
-      });
-  }
-  handleSubmit(makeRequest, evt);
-}
+  renderLoading(true, form);
 
-function handleAvatarFormSubmit(evt) {
-  console.log("handleAvatarFormSubmit called");
-  function makeRequest() {
-    return api
-      .updateAvatar({
-        avatar: avatarInput.value,
-      })
-      .then((data) => {
-        profileAvatar.src = data.avatar;
-        closeModal(avatarModal);
-        return data;
-      });
+  if (!imageInput) {
+    renderLoading(false, form, "Please enter an image URL");
+    console.log("Empty image URL");
+    return;
   }
-  handleSubmit(makeRequest, evt);
-}
+  if (!captionInput) {
+    renderLoading(false, form, "Please enter a caption");
+    console.log("Empty caption");
+    return;
+  }
 
-function handleDeleteFormSubmit(evt) {
-  console.log("handleDeleteFormSubmit called");
-  function makeRequest() {
-    return api.deleteCard(selectedCardID).then(() => {
-      selectedCard.remove();
-      closeModal(deleteModal);
+  const request = function () {
+    return api.addCard({ name: captionInput, link: imageInput });
+  };
+
+  handleSubmit(request, event, "Saving...")
+    .then(function () {
+      closeModal(document.querySelector("#new-post-modal"));
+      renderCards();
+    })
+    .catch(function (error) {
+      console.log("Post error:", error);
+      renderLoading(false, form, "Cannot save post. Try again.");
     });
-  }
-  handleSubmit(makeRequest, evt);
 }
 
-newPostFormElement.addEventListener("submit", handleNewPostFormSubmit);
-editFormElement.addEventListener("submit", handleProfileFormSubmit);
-avatarFormElement.addEventListener("submit", handleAvatarFormSubmit);
-deleteFormElement.addEventListener("submit", handleDeleteFormSubmit);
+// Profile Form
+function handleProfileFormSubmit(event) {
+  console.log("handleProfileFormSubmit called");
+  event.preventDefault();
+  const form = event.target;
+  const submitButton = form.querySelector(".modal__submit-button");
+  const nameInput = form.querySelector("#profile-name-input");
+  const descriptionInput = form.querySelector("#profile-description-input");
+
+  if (!nameInput || !descriptionInput) {
+    console.log("Profile inputs not found");
+    renderLoading(false, form, "Form error. Check input IDs.");
+    return;
+  }
+
+  renderLoading(true, form);
+
+  if (!nameInput.value || !descriptionInput.value) {
+    renderLoading(false, form, "Please fill out all fields");
+    console.log("Empty profile fields");
+    return;
+  }
+
+  setButtonText(submitButton, true, "Save", "Saving...");
+  const request = function () {
+    return api.editUserInfo({
+      name: nameInput.value,
+      about: descriptionInput.value,
+    });
+  };
+
+  handleSubmit(request, event, "Saving...")
+    .then(function ({ data }) {
+      document.querySelector(".profile__name").textContent = data.name;
+      document.querySelector(".profile__description").textContent = data.about;
+      closeModal(document.querySelector("#edit-open-modal"));
+    })
+    .catch(function (error) {
+      console.log("Profile error:", error);
+      renderLoading(false, form, "Cannot save profile. Try again.");
+    });
+}
+
+// Avatar Form
+function handleAvatarFormSubmit(event) {
+  console.log("handleAvatarFormSubmit called");
+  event.preventDefault();
+  const form = event.target;
+  const submitButton = form.querySelector(".modal__submit-button");
+  const avatarInput = form.querySelector("#profile-avatar-input");
+
+  if (!avatarInput) {
+    console.log("Avatar input not found");
+    renderLoading(false, form, "Form error. Check input ID.");
+    return;
+  }
+
+  renderLoading(true, form);
+
+  if (!avatarInput.value) {
+    renderLoading(false, form, "Please enter an avatar URL");
+    console.log("Empty avatar URL");
+    return;
+  }
+
+  setButtonText(submitButton, true, "Save", "Saving...");
+  const request = function () {
+    return api.updateAvatar({ avatar: avatarInput.value });
+  };
+
+  handleSubmit(request, event, "Saving...")
+    .then(function ({ data }) {
+      document.querySelector("#profile-avatar").src = data.avatar;
+      closeModal(document.querySelector("#avatar-open-modal"));
+    })
+    .catch(function (error) {
+      console.log("Avatar error:", error);
+      renderLoading(false, form, "Cannot save avatar. Try again.");
+    });
+}
+
+// Event Listeners
+document
+  .querySelector("#new-post-form-modal")
+  .addEventListener("submit", handleNewPostFormSubmit);
+document
+  .querySelector("#edit-open-modal")
+  .addEventListener("submit", handleProfileFormSubmit);
+document
+  .querySelector("#avatar-open-modal")
+  .addEventListener("submit", handleAvatarFormSubmit);
 
 enableValidation(validationConfig);

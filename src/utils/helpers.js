@@ -1,20 +1,33 @@
-export function renderLoading(
+export function setButtonText(
+  button,
   isLoading,
-  buttonElement,
-  initialText,
+  defaultText = "Save",
   loadingText = "Saving..."
 ) {
-  if (!buttonElement) {
-    console.error("No button element provided to renderLoading");
+  if (!button) {
+    console.log("No button for setButtonText");
     return;
   }
-  console.log("renderLoading:", {
+  console.log("setButtonText:", {
     isLoading,
-    buttonElement,
-    initialText,
+    button,
+    defaultText,
     loadingText,
   });
-  buttonElement.textContent = isLoading ? loadingText : initialText;
+  button.textContent = isLoading ? loadingText : defaultText;
+  button.disabled = isLoading;
+}
+
+export function renderLoading(isLoading, formElement, errorMessage = "") {
+  if (!formElement) {
+    console.log("No form for renderLoading");
+    return;
+  }
+  const errorSpans = formElement.querySelectorAll(".modal__error_visible");
+  console.log("renderLoading:", { isLoading, errorMessage });
+  errorSpans.forEach((span) => {
+    span.textContent = isLoading ? "" : errorMessage;
+  });
 }
 
 export function handleSubmit(request, evt, loadingText = "Saving...") {
@@ -22,31 +35,42 @@ export function handleSubmit(request, evt, loadingText = "Saving...") {
   const submitButton =
     evt.submitter || evt.target.querySelector(".modal__submit-button");
   if (!submitButton) {
-    console.error("No submit button found for form:", evt.target);
+    console.log("No submit button found");
     return;
   }
   const initialText = submitButton.textContent || "Save";
-  console.log("handleSubmit calling renderLoading with:", {
+  console.log("handleSubmit calling setButtonText:", {
     isLoading: true,
     submitButton,
     initialText,
     loadingText,
   });
-  renderLoading(true, submitButton, initialText, loadingText);
+  setButtonText(submitButton, true, initialText, loadingText);
+  renderLoading(true, evt.target);
+
   return request()
-    .then(() => {
-      evt.target.reset();
+    .then(function (response) {
+      if (!response.ok) {
+        console.log("Server error: HTTP", response.status);
+        throw new Error();
+      }
+      return response.json();
     })
-    .catch((err) => {
-      console.error("Request failed:", err);
+    .then(function (data) {
+      evt.target.reset();
+      return data;
+    })
+    .catch(function (err) {
+      console.log("Request failed:", err);
+      renderLoading(false, evt.target, "Cannot save. Try again.");
       throw err;
     })
-    .finally(() => {
-      console.log("handleSubmit calling renderLoading with:", {
+    .finally(function () {
+      console.log("handleSubmit calling setButtonText:", {
         isLoading: false,
         submitButton,
         initialText,
       });
-      renderLoading(false, submitButton, initialText);
+      setButtonText(submitButton, false, initialText);
     });
 }
