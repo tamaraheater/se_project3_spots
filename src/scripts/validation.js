@@ -23,21 +23,21 @@ const hideInputError = (formElement, inputElement, config) => {
   errorMessageElement.textContent = "";
 };
 
-const checkInputValidity = (formElement, inputElement, config) => {
-  console.log("checkInputValidity:", inputElement.id, inputElement.validity);
-  if (inputElement.validity.tooShort) {
-    showInputError(formElement, inputElement, " Enter text.", config);
-  } else if (!inputElement.validity.valid) {
-    showInputError(
-      formElement,
-      inputElement,
-      inputElement.validationMessage,
-      config
-    );
-  } else {
-    hideInputError(formElement, inputElement, config);
-  }
-};
+// const checkInputValidity = (formElement, inputElement, config) => {
+//   console.log("checkInputValidity:", inputElement.id, inputElement.validity);
+//   if (inputElement.validity.tooShort) {
+//     showInputError(formElement, inputElement, " please enter at least 2 Enter text. , config);
+//   } else if (!inputElement.validity.valid) {
+//     showInputError(
+//       formElement,
+//       inputElement,
+//       inputElement.validationMessage,
+//       config
+//     );
+//   } else {
+//     hideInputError(formElement, inputElement, config);
+//   }
+// };
 
 export const hasInvalidInput = (inputList) => {
   return inputList.some((input) => {

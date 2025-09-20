@@ -14,11 +14,11 @@ import {
   toggleButtonState,
 } from "../scripts/validation.js";
 
-// Instantiate Api with correct Authorization header
+// Instantiate Api
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    authorization: "563217bb-cd86-459c-9285-cca63d6f8c1f",
     "Content-Type": "application/json",
   },
 });
