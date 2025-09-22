@@ -23,7 +23,6 @@ export function handleSubmit(request, evt, loadingText = "Saving...") {
     })
     .catch((err) => {
       console.error("Submission failed:", err);
-      throw err;
     })
     .finally(() => {
       setButtonText(submitButton, false, initialText, loadingText);

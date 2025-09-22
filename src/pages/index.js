@@ -223,6 +223,10 @@ avatarModalCloseButton.addEventListener("click", () => {
   closeModal(avatarModal);
 });
 
+deleteCancelButton.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
+
 // Close Modal
 const modals = document.querySelectorAll(".modal");
 modals.forEach((modal) => {
