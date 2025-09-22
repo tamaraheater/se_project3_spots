@@ -1,11 +1,10 @@
 import "../pages/index.css";
 import Api from "../utils/Api.js";
-import { setButtonText, handleSubmit } from "../utils/helpers.js";
+import { handleSubmit } from "../utils/helpers.js";
 import {
   enableValidation,
   validationConfig,
   resetValidation,
-  disableButton,
   toggleButtonState,
 } from "../scripts/validation.js";
 
@@ -13,8 +12,8 @@ import {
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "563217bb-cd86-459c-9285-cca63d6f8c1f",
     "Content-Type": "application/json",
+    authorization: "563217bb-cd86-459c-9285-cca63d6f8c1f",
   },
 });
 
@@ -211,6 +210,10 @@ editModalCloseButton.addEventListener("click", () => {
   closeModal(editModal);
 });
 
+newPostSubmitButton.addEventListener("click", () => {
+  closeModal(newPostModal);
+});
+
 newPostCloseButton.addEventListener("click", () => {
   closeModal(newPostModal);
 });
@@ -219,11 +222,19 @@ previewModalCloseButton.addEventListener("click", () => {
   closeModal(previewModal);
 });
 
+avatarSubmitButton.addEventListener("click", () => {
+  closeModal(avatarModal);
+});
+
 avatarModalCloseButton.addEventListener("click", () => {
   closeModal(avatarModal);
 });
 
-deleteCancelButton.addEventListener("click", () => {
+cardDeleteButton.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
+
+cancelDeleteButton.addEventListener("click", () => {
   closeModal(deleteModal);
 });
 
