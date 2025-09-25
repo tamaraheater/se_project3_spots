@@ -12,12 +12,13 @@
   justify-content: center;
   padding: 0 20px;
   visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s ease-in;
 }
 
 .modal_opened {
   visibility: visible;
   opacity: 1;
-  transition: visibility 3s, opacity 3s, linear 1s;
 }
 
 .modal__container {
@@ -66,7 +67,6 @@
 
 .modal__title {
   margin: 0 0 32px;
-  width: 169px;
   height: 32px;
   font-weight: 500;
   font-size: 32px;
@@ -135,6 +135,85 @@
   cursor: pointer;
 }
 
+#delete-modal .modal__container {
+  display: flex;
+  flex-direction: column;
+  width: 630px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 32px;
+}
+
+.modal__form-delete {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  gap: 20px;
+}
+
+#delete-modal .modal__title {
+  width: 590px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+  margin: 0 0 32px;
+  gap: 32px;
+}
+
+#delete-modal .modal__close-button {
+  background-image: url(../images/Close2Icon.svg);
+  top: -10px;
+  right: -50px;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  opacity: 1;
+}
+
+.modal__form-delete .modal__submit-button {
+  width: 156px;
+  background-color: #ff6565;
+  color: #212121;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.2;
+  border: none;
+  border-radius: 8px;
+  gap: 20px;
+  cursor: pointer;
+  padding: 18px 32px;
+  transition: 0.3s, linear;
+  gap: 8px;
+}
+
+.modal__form-delete:hover .modal__submit-button {
+  background-color: #ff3333;
+  opacity: 1;
+}
+
+.modal__cancel-button {
+  width: 156px;
+  border-width: 1px;
+  border-color: #212121;
+  border-radius: 8px;
+  background-color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1;
+  color: #212121;
+  padding: 18px 32px;
+  cursor: pointer;
+}
+
+.modal__cancel-button:hover {
+  border: none;
+  background-color: #212121;
+  color: #fff;
+}
+
 .modal__submit-button_disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -175,7 +254,37 @@
   }
 
   .modal__container {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 12px;
+    border-radius: 8px;
+    gap: 20px;
+  }
+
+  .modal__form-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  #delete-modal .modal__title {
+    width: 236px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    align-items: center;
+    gap: 20px;
+    margin: 0px 10px 30px 30px;
+  }
+
+  #delete-modal .modal__close-button {
+    width: 40px;
+    height: 40px;
+    top: -40px;
+    right: 0;
   }
 
   .modal__title {
