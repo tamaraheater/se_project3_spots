@@ -23,9 +23,9 @@ The design figma can be seen below.
 **Video**
 A video review of the project can be seen at the link below.
 
-- [Link to an explainer project review video] (https://drive.google.com/file/d/1j3ScY1TrVTye48G6P-4y7SD34FFYcW7-/view?usp=sharing)
+- [Link to an explainer project review demo video] (https://drive.google.com/file/d/1j3ScY1TrVTye48G6P-4y7SD34FFYcW7-/view?usp=sharing)
 
 **Website**
 The published page is available to view at the link below.
 
-- [link to website](https://tamaraheater.github.io/se_project3_spots/)
+- [Link to website](https://tamaraheater.github.io/se_project3_spots/)
