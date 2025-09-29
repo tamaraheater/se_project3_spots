@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "dev": "webpack serve --mode development"
+    "dev": "webpack serve --mode development",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -39,4 +41,3 @@
     "serve": "^14.2.5"
   }
 }
-
